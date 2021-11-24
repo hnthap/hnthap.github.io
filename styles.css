@@ -1,0 +1,26 @@
+body {
+  color: dodgerblue;
+  text-align: center;
+}
+h1 {
+  font-family: tahoma;
+}
+p {
+  font-family: lucida console;
+  border: 2px solid dodgerblue;
+  padding: 30px;
+}
+a {
+  text-decoration: none;
+}
+button {
+  background-color: dodgerblue;
+  border: none;
+  border-radius: none;
+  color: white;
+  font-family: tahoma;
+  font-size: 16px;
+  margin: center;
+  padding: 12px 30px;
+  text-align: center;
+}
