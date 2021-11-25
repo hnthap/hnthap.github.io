@@ -1,5 +1,6 @@
-body {
-    background-color: seashell;
+.content {
+    max-width: 700px;
+    margin: auto;
 }
 .black {
     color: black;
