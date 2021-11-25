@@ -1,26 +1,69 @@
 body {
-  color: dodgerblue;
-  text-align: center;
+    background-color: seashell;
 }
-h1 {
-  font-family: tahoma;
+.black {
+    color: black;
 }
-p {
-  font-family: lucida console;
-  border: 2px solid dodgerblue;
-  padding: 30px;
+.blue {
+    color: dodgerblue;
+}
+.red {
+    color: tomato;
+}
+.blackborder {
+    border: 2px solid black;
+}
+.blueborder {
+    border: 2px solid dodgerblue;
+}
+.redborder {
+    border: 2px solid tomato;
+}
+.blackbc {
+    background-color: black;
+}
+.bluebc {
+    background-color: dodgerblue;
+}
+.redbc {
+    background-color: tomato;
 }
 a {
-  text-decoration: none;
+    color: blue;
+    font-family: lucida console;
+    text-decoration: none;
 }
-button {
-  background-color: dodgerblue;
-  border: none;
-  border-radius: none;
-  color: white;
-  font-family: tahoma;
-  font-size: 16px;
-  margin: center;
-  padding: 12px 30px;
-  text-align: center;
+.box {
+    background-color: whitesmoke;
+    font-family: Georgia;
+    padding: 40px;
+}
+.header {
+    font-family: tahoma;
+    text-align: center;
+}
+.center {
+    text-align: center;
+}
+.columnleft {
+    float: left;
+    width: 66%;
+}
+.columnright {
+    float: right;
+    width: 30%;
+}
+.row:after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+.button {
+    border: none;
+    border-radius: none;
+    color: white;
+    font-family: tahoma;
+    font-size: 16px;
+    padding: 12px 30px;
+    text-align: center;
 }
