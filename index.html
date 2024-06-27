@@ -2,77 +2,66 @@
 <html lang="en">
     <head>
       <title>hnthap from GitHub</title>
-      <link rel="stylesheet" type="text/css" href="https://hnthap.github.io/styles.css">
+      <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
         <div class="content">
-            <!-- HEADER -->
             <div class="blue header">
                 <h1>Welcome!</h1>
-                <a href="https://hnthap.github.io/index.html">
-                    <button class="bluebc button">HOME</button>
-                </a>
-                <a href="https://hnthap.github.io/about.html">
-                    <button class="bluebc button">ABOUT</button>
-                </a>
-                <a href="https://hnthap.github.io/unavailable.html">
-                    <button class="bluebc button">PROJECTS</button>
-                </a>
-                <a href="https://hnthap.github.io/unavailable.html">
-                    <button class="bluebc button">LICENSE</button>
-                </a>
-                <a href="https://github.com/hnthap" target="_blank">
-                    <button class="bluebc button">GITHUB</button>
-                </a>
-                <p><br></p>
             </div>
-            <!-- END HEADER -->
+            <div 
+                id="menu" 
+                class="blue header" 
+                style="padding-bottom: 20px; display: flex; justify-content: space-between;"
+            ></div>
 
             <div class="row">
                 <!-- COLUMN LEFT -->
                 <div class="columnleft">
                     <div class="blueborder blue box">
                         <div class="center">
-                            <img src="https://hnthap.github.io/img/Pope_Gregory_XVI_Visiting_the_Church_of_San_Benedetto_at_Subiaco_MET_DP169610.jpg" style="height: 300px;" alt="Pope Gregory XVI">
+                            <img 
+                                src="./images/projects/car-ride-1.png" 
+                                style="width: 360px;" 
+                                alt="project"
+                            >
                         </div>
-                        <h3 style="text-align: center;">Pontiffs' Data Project</h3>
-                        <p style="text-align: center;"><a href="https://hnthap.github.io/unavailable.html">see more...</a></p>
+                        <h3 style="text-align: center;">Car Ride Simulation</h3>
+                        <p style="text-align: center;"><a href="./projects.html">see more...</a></p>
                     </div>
                     <p><br></p>
-                    <div class="blueborder blue box center">
-                        <h3>Or more projects...</h3>
-                        <a href="https://hnthap.github.io/unavailable.html">
-                            <button class="bluebc button">PROJECTS</button>
-                        </a>
-                    </div>
                 </div>
                 <!-- END COLUMN LEFT -->
 
                 <!-- COLUMN RIGHT -->
                 <div class="columnright">
-                    <div class="blueborder blue box">
+                    <div id="about-box" class="blueborder blue box">
                         <h3>Hello</h3>
-                        <p>I'm <a href="https://github.com/hnthap">@hnthap</a> from GitHub.</p>
-                        <p>I created this site in November 2021 for hosting some of my projects. There is still nothing here for now but I will fill it up later.</p>
-                        <div style="text-align: center;">
-                            <a href="https://hnthap.github.io/about.html">
-                                <button class="bluebc button">ABOUT</button>
-                            </a>
-                        </div>
+                        <p>I'm <a href="./about.html">@hnthap</a> from GitHub.</p>
+                        <p>
+                            This site introduces some of my school and hobby projects.
+                        </p>
                     </div>
                     <p><br></p>
-                    <div class="blueborder blue box">
-                        <h3>License</h3>
-                        <p>Unavailable.</p>
-                        <div style="text-align: center;">
-                            <a href="https://hnthap.github.io/unavailable.html">
-                                <button class="bluebc button">LICENSE</button>
-                            </a>
-                        </div>
+                    <div id="project-box" class="blueborder blue box">
+                        <h3>Other projects...</h3>
                     </div>
                 </div>
                 <!-- END COLUMN RIGHT -->
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="./utils.js"></script>
+        <script lang="jquery">
+            
+(() => {
+  $("h1").text("Welcome!");
+  initializeMenu(true);
+
+  appendBoxButton($("#about-box"), "ABOUT", "./about.html", true);
+  appendBoxButton($("#project-box"), "PROJECTS", "./projects.html", true);
+})();
+
+        </script>
     </body>
 </html>
