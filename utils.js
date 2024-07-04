@@ -7,7 +7,7 @@
  */
 function appendButton(parent, name, blue) {
   const button = $("<button></button>");
-  button.addClass(blue ? "bluebc" : "redbc");
+  // button.addClass(blue ? "bluebc" : "redbc");
   button.addClass("button");
   button.text(name);
   parent.append(button);
@@ -55,6 +55,14 @@ function appendBoxButton(box, name, url, blue, target) {
  */
 function initializeMenu(blue) {
   const menu = $("#menu");
+  const profile = $("<img>");
+  profile.addClass("profile");
+  profile.attr("src", "./images/profile.jpg");
+  profile.attr("height", "40px");
+  const a = $("<a></a>");
+  a.attr("href", "./");
+  a.append(profile);
+  menu.append(a);
   appendMenuItem(menu, "HOME", "./index.html", blue);
   appendMenuItem(menu, "ABOUT", "./about.html", blue);
   appendMenuItem(menu, "PROJECTS", "./projects.html", blue);

@@ -29,9 +29,6 @@
 .redbc {
     background-color: tomato;
 }
-a {
-    text-decoration: none;
-}
 a.emph {
     color: blue;
     font-family: lucida console;
@@ -39,7 +36,7 @@ a.emph {
 .box {
     background-color: whitesmoke;
     font-family: Georgia;
-    padding: 40px;
+    padding: 30px;
     padding-bottom: 20px;
 }
 .header {
@@ -65,28 +62,61 @@ a.emph {
 .button {
     border: none;
     border-radius: none;
-    color: white;
     font-family: tahoma;
-    font-size: 16px;
-    padding: 12px 30px;
+    font-size: 20px;
+    padding: 12px 50px;
     text-align: center;
 }
-img.profile-image {
-    border-radius: 50%;
-    width: 30px;
-    width: 100px;
-    height: 100px;
+.project-image {
+    width: 100%;
+    padding-bottom: 12pt;
+}
+.project-tabs>button {
+    border-radius: 0;
+    padding-left: 10px;
+    padding-right: 10px;;
 }
 #project-box {
     color: black;
 }
 #project-box a {
-    color: black;
+    color: dodgerblue;
     text-decoration: none;
 }
 #project-box p {
     text-align: justify;
 }
-#project-box #project-tabs button {
-    border-radius: 0;
+#menu {
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.big-profile {
+    border: 10px solid white;
+    height: 180px;
+    border-radius: 50%;
+}
+.profile {
+    border: 5px solid whitesmoke;
+    height: 40px;
+    border-radius: 50%;
+}
+p.tag {
+    user-select: none;
+    font-size: 11pt;
+}
+p.tag:hover {
+    font-weight: bold;
+}
+#tag-project-box>.image-bar {
+    display: flex;
+    justify-content: right;
+}
+#tag-project-box>.image-bar>img, #tag-project-box>.image-bar>a {
+    height: 50px;
+    padding-left: 10px;
+}
+
+#tag-project-box>.image-bar>a>img {
+    height: 100%;
 }
