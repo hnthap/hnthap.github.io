@@ -3,21 +3,22 @@
     <head>
         <title>About me</title>
       <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="./images/profile.jpg">
     </head>
     <body>
         <div class="content">
             <!-- HEADER -->
-            <div 
-                id="menu"
-                class="blue header" 
-                style="padding-bottom: 20px; display: flex; justify-content: space-between;"
-            ></div>
+            <div id="menu" class="blue header"></div>
             <!-- END HEADER -->
 
-            <div class="center blueborder blue box">
+            <div class="center box">
                 <img class="big-profile" src="./images/profile.jpg">
                 <p>I'm Huynh Nhan Thap, a Computer Science student from<br/> the VNUHCM &mdash; University of Information Technology.</p>
                 <p>I created this site in 2021 to introduce some projects I had been working on.</p>
+            </div>
+            <br />
+            <div class="center box">
+                <h3>Some accounts of mine</h3>
                 <div style="display: flex; justify-content: space-evenly; align-items: center; padding-top: 10px;">
                     <a href="https://github.com/hnthap">
                         <img src="./images/kaggle.png" style="height: 30px">
@@ -36,10 +37,7 @@
         <script src="./utils.js"></script>
         <script lang="jquery">
 
-(() => {
-  $("h1").text("Welcome!");
-  initializeMenu(true);
-})();
+initializeMenu(true);
 
         </script>
     </body>

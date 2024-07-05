@@ -3,45 +3,29 @@
     <head>
       <title>hnthap from GitHub</title>
       <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="./images/profile.jpg">
     </head>
     <body>
         <div class="content">
-            <div 
-                id="menu" 
-                class="blue header" 
-                style="padding-bottom: 20px; display: flex; justify-content: space-between;"
-            ></div>
+            <div id="menu" class="blue header"></div>
 
             <div class="row">
                 <!-- COLUMN LEFT -->
                 <div class="columnleft">
-                    <div class="blueborder blue box">
-                        <div class="center">
-                            <img 
-                                src="./images/projects/car-ride-1.png" 
-                                style="width: 360px;" 
-                                alt="project"
-                            >
-                        </div>
-                        <h3 style="text-align: center;">Car Ride Simulation</h3>
-                        <p style="text-align: center;"><a href="./projects.html">see more...</a></p>
+                    <div id="project" class="box">
+                        
                     </div>
-                    <p><br></p>
                 </div>
                 <!-- END COLUMN LEFT -->
 
                 <!-- COLUMN RIGHT -->
                 <div class="columnright">
-                    <div id="about-box" class="blueborder blue box">
-                        <h3>Hello</h3>
-                        <p>I'm <a href="./about.html">@hnthap</a> from GitHub.</p>
-                        <p>
-                            This site introduces some of my school and hobby projects.
-                        </p>
-                    </div>
-                    <p><br></p>
-                    <div id="project-box" class="blueborder blue box">
-                        <h3>Other projects...</h3>
+                    <div id="about-box" class="box">
+                        <div class="profile-div">
+                            <img src="./images/profile.jpg" alt="My profile image">
+                        </div>
+                        <p>Nice to meet you.</p>
+                        <p>I'm <a href="./about.html">Thap</a>, a CS student at UIT, Vietnam.</p>
                     </div>
                 </div>
                 <!-- END COLUMN RIGHT -->
@@ -49,14 +33,34 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="./utils.js"></script>
+        <script src="./project-list.js"></script>
+        <script src="./projects.js"></script>
         <script lang="jquery">
             
 (() => {
   $("h1").text("Welcome!");
   initializeMenu(true);
-
   appendBoxButton($("#about-box"), "ABOUT", "./about.html", true);
-  appendBoxButton($("#project-box"), "PROJECTS", "./projects.html", true);
+
+  const highlight = highlights[0];
+  $("#project").append(
+    $("<h2></h2>").text("My recent project"),
+    $("<h3></h3>").text(highlight.name),
+    $("<div></div>")
+        .addClass("project-small-info")
+        .append(
+            $("<img>")
+                .attr("style", "width: 100%;")
+                .attr("src", "./images/projects/" + highlight.image),
+            $("<p></p>")
+                .attr("style", "text-indent: 1em;")
+                .text(highlight.description[0]),
+            $("<p></p>")
+                .attr("style", "font-style: italic; text-align: right;")
+                .text("Click to see more...")
+        )
+        .on("click", () => window.location.replace("./projects.html"))
+  );
 })();
 
         </script>

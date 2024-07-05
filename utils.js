@@ -63,8 +63,8 @@ function initializeMenu(blue) {
   a.attr("href", "./");
   a.append(profile);
   menu.append(a);
-  appendMenuItem(menu, "HOME", "./index.html", blue);
-  appendMenuItem(menu, "ABOUT", "./about.html", blue);
-  appendMenuItem(menu, "PROJECTS", "./projects.html", blue);
-  appendMenuItem(menu, "GITHUB", "https://github.com/hnthap", blue, "_blank");
+  appendMenuItem(menu, "Home", "./index.html", blue);
+  appendMenuItem(menu, "About", "./about.html", blue);
+  appendMenuItem(menu, "Projects", "./projects.html", blue);
+  appendMenuItem(menu, "GitHub", "https://github.com/hnthap", blue, "_blank");
 }

@@ -8,10 +8,7 @@
     <body>
         <div class="content">
             <!-- HEADER -->
-            <div 
-                id="menu"
-                class="blue header" 
-            ></div>
+            <div id="menu" class="blue header"></div>
             <!-- END HEADER -->
 
             <div class="row">
@@ -24,6 +21,7 @@
 
                 <!-- COLUMN RIGHT -->
                 <div class="columnright">
+                    <div id="project-highlights" class="blue box"></div>
                     <div id="tags" class="blue box"></div>
                 </div>
                 <!-- END COLUMN RIGHT -->
@@ -31,6 +29,16 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="./utils.js"></script>
+        <script src="./project-list.js"></script>
         <script src="./projects.js"></script>
+        <script lang="jquery">
+(() => {
+  $("title").text("My Projects");
+  initializeMenu(true);
+  showSmallHighlightList();
+  showTagList();
+  showProjects();
+})();
+        </script>
     </body>
 </html>

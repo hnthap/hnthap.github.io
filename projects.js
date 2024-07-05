@@ -1,57 +1,30 @@
+const highlights = projects.filter((p) => p.highlight).sort(sortProjects);
+const nonHighlights = projects.filter((p) => !p.highlight).sort(sortProjects);
+
 /**
- * Projects' information.
  * @type {{
- *  tags: string[]; 
- *  name: string; 
- *  description: string; 
- *  collaborators: string[];
- *  image: string;
- *  github: string;
- *  year: number;
- *  githubPage: string;
- * }[]}
- * */
-const projects = [
-  {
-    tags: ["2D & 3D Graphics", "JavaScript / TypeScript", "React", "NodeJS"],
-    name: "Car Ride Simulation",
-    description: [
-      `
-Simulating car movement on an artificial landscape, alongside some landmarks in 
-Paris, France. This is the capstone project for my Computer Graphics course at
-university.
-      `, `
-This project involved the use of 3D library (three.js) and a 
-physics engine (cannon.js) through React Three Fiber, React Three Drei and
-React Three Cannon, and a frontend build tool (Vite).
-      `,
-    ],
-    collaborators: ["VuNamPhuong", "daccuong110320"],
-    image: "car-ride-1.png",
-    github: "hnthap/car-ride",
-    year: 2024,
-    githubPage: null,
+ *  [tag: string]:
+ *    string[]
+ *    | { image: string; license: string; author: string; }
+ * }}
+ */
+const tagImages = {
+  CSS: {
+    image: "css3.png",
+    license: "CC-BY 3.0",
+    author: "daPhyre",
   },
-  {
-    tags: ["CSS", "JavaScript / TypeScript", "JQuery"],
-    name: "Basic Calculator",
-    description: [
-      `
-Basic calculator.
-    `,
-      `
-It can perform addition, subtraction, multiplication and
-division. This project uses only plain HTML, CSS and vanilla JavaScript
-(JQuery).
-    `,
-    ],
-    collaborators: [],
-    image: "js-calculator.png",
-    github: "hnthap/js-calculator",
-    year: 2024,
-    githubPage: "https://hnthap.github.io/js-calculator",
-  },
-];
+  "Front-end": ["front-end.png"],
+  Graphics: ["webgl.png", "threejs.png"],
+  "JavaScript/TypeScript": ["javascript.png", "typescript.png"],
+  JQuery: ["jquery.png", "javascript.png"],
+  NodeJS: ["nodejs.2015.png"],
+  ReactJS: ["react.png"],
+};
+
+function sortProjects(p1, p2) {
+  return p1.year < p2.year;
+}
 
 function showProject({
   name,
@@ -61,6 +34,7 @@ function showProject({
   collaborators,
   tags,
   githubPage,
+  highlight,
 }) {
   const githubHref = `https://github.com/${github}`;
   $("#tag-project-box").hide();
@@ -68,6 +42,13 @@ function showProject({
     .show()
     .empty()
     .append(
+      highlight &&
+        $("<div></div>")
+          .attr(
+            "style",
+            "text-align: center; height: 30px; padding-bottom: 10px;"
+          )
+          .append($("<img>").attr("src", "./images/star.png").height("100%")),
       $("<a></a>")
         .append(
           $("<img>")
@@ -83,22 +64,31 @@ function showProject({
         .append(
           ...collaborators.map((v) =>
             $("<a></a>")
+              .attr("target", "_blank")
               .attr("href", `https://github.com/${v}`)
               .text("<" + v + ">")
           )
         ),
       $("<p></p>")
-        .text("Available on ")
+        .text("Source code is available on ")
         .append(
-          $("<a></a>").attr("href", githubHref),
-          $("<img>")
-            .attr("src", "./images/github.png")
-            .attr("style", "height: 14px"),
-          $("<a></a>").html(
-            githubPage
-              ? ` (<a href="${githubPage}" target="_blank">Live Server</a>).`
-              : ""
-          )
+          $("<a></a>")
+            .attr("href", githubHref)
+            .attr("target", "_blank")
+            .append(
+              $("<img>")
+                .attr("src", "./images/github.png")
+                .attr("style", "height: 14px")
+            )
+        ),
+      githubPage &&
+        $("<p></p>").append(
+          $("<span></span>").text("There is a "),
+          $("<a></a>")
+            .attr("href", githubPage)
+            .attr("target", "_blank")
+            .text("Live Server"),
+          $("<span></span>").text(".")
         ),
       $("<div></div>")
         .text("Topics: ")
@@ -113,23 +103,6 @@ function showProject({
     );
 }
 
-function showTagList() {
-  const tags = new Set();
-  for (const project of projects) {
-    for (const tag of project.tags) {
-      tags.add(tag);
-    }
-  }
-  for (const tag of Array.from(tags).sort()) {
-    $("#tags").append(
-      $("<p></p>")
-        .addClass("tag")
-        .text(tag)
-        .on("click", () => showProjectsByTag(tag))
-    );
-  }
-}
-
 function makeImageBar(...names) {
   return $("<div></div>")
     .addClass("image-bar")
@@ -142,73 +115,156 @@ function makeImageBar(...names) {
     );
 }
 
-function makeCCBY3_0ImageBar(name, author) {
+function makeLicensedImageBar(name, author, licenseName) {
+  let licenseUrl;
+  switch (licenseName) {
+    case "CC-BY 3.0":
+      licenseUrl = "https://creativecommons.org/licenses/by/3.0/deed.en";
+      break;
+
+    default:
+      throw new Error("Unrecognizable license name: " + licenseName);
+  }
+  const title = `Image by ${author}, licensed under ${licenseName} (click to see)`;
   return $("<div></div>")
     .addClass("image-bar")
     .append(
       $("<a></a>")
         .attr("target", "_blank")
-        .attr("href", "https://creativecommons.org/licenses/by/3.0/deed.en")
+        .attr("href", licenseUrl)
         .append(
           $("<img>")
             .attr("src", "./images/" + name)
-            .attr(
-              "title",
-              `Image by ${author}, licensed under CC-BY 3.0 (click to see)`
-            )
+            .attr("title", title)
         )
     );
+}
+
+function showTagList() {
+  const tags = new Map();
+  for (const project of projects) {
+    for (const tag of project.tags) {
+      if (tags.has(tag)) {
+        tags.set(tag, tags.get(tag) + 1);
+      } else {
+        tags.set(tag, 1);
+      }
+    }
+  }
+  function sortTags(t1, t2) {
+    return (
+      (tags.get(t1) === tags.get(t2) && t1.localeCompare(t2)) ||
+      tags.get(t1) < tags.get(t2)
+    );
+  }
+  $("#tags").append(
+    $("<h3></h3>").text("Topics"),
+    $("<table></table>").append(
+      $("<tbody></tbody>").append(
+        ...Array.from(tags.keys())
+          .sort(sortTags)
+          .map((tag) =>
+            $("<tr></tr>").append(
+              $("<td></td>")
+                .addClass("tag")
+                .text(tag)
+                .on("click", () => showProjectsByTag(tag)),
+              $("<td></td>").addClass("tag-right-column").text(tags.get(tag))
+            )
+          )
+      )
+    )
+  );
+}
+
+function showSmallHighlightList() {
+  const limit = 10;
+  $("#project-highlights").append(
+    $("<h3></h3>").text(`Highlights`),
+    $("<table></table>").append(
+      $("<tbody></tbody>").append(
+        ...highlights.slice(0, limit).map((p) =>
+          $("<tr></tr>").append(
+            $("<td></td>")
+              .addClass("tag")
+              .text(p.name)
+              .on("click", () => showProject(p)),
+            $("<td></td>").addClass("tag-right-column").text(p.year)
+          )
+        ),
+        $("<tr></tr>").append(
+          $("<td></td>")
+            .addClass("tag")
+            .attr("colspan", 2)
+            .attr("style", "text-align: center; font-style: italic;")
+            .text("See all projects...")
+            .on("click", () => showProjects())
+        )
+      )
+    )
+  );
+}
+
+function showProjects() {
+  $("#project-box").hide();
+  const box = $("#tag-project-box").show().empty();
+  function getProject(project) {
+    return $("<div></div>")
+      .addClass("project-small-info")
+      .append(
+        $("<p></p>")
+          .addClass("center")
+          .text(`${project.name} (${project.year})`),
+        $("<img>")
+          .attr("src", "./images/projects/" + project.image)
+          .addClass("project-image")
+      )
+      .on("click", () => showProject(project));
+  }
+  box.append(
+    $("<div></div>")
+      .attr("style", "text-align: center; height: 30px; padding-bottom: 10px;")
+      .append($("<img>").attr("src", "./images/star.png").height("100%")),
+    $("<p></p>").text(
+      `Some projects I have worked on alone or in collaboration.`
+    ),
+    $("<p></p>")
+      .attr("style", "font-style: italic; padding-bottom: 10px;")
+      .text("Click a project's image to see more."),
+    $("<h2></h2>").text(`Highlights`),
+    ...highlights.map(getProject),
+    $("<h2></h2>").text("Other projects"),
+    ...nonHighlights.map(getProject)
+  );
 }
 
 function showProjectsByTag(tag) {
   $("#project-box").hide();
   const box = $("#tag-project-box").show().empty();
-  switch (tag) {
-    case "2D & 3D Graphics":
-      box.append(
-        makeImageBar(
-          "webgl.png",
-          "threejs.png",
-          "javascript.png",
-          "typescript.png"
-        )
-      );
-      break;
-
-    case "CSS":
-      box.append(makeCCBY3_0ImageBar("css3.png", "daPhyre"));
-      break;
-
-    case "JavaScript / TypeScript":
-      box.append(makeImageBar("javascript.png", "typescript.png"));
-      break;
-
-    case "JQuery":
-      box.append(makeImageBar("jquery.png", "javascript.png"));
-      break;
-
-    case "NodeJS":
-      box.append(
-        makeImageBar("nodejs-2015.png", "javascript.png", "typescript.png")
-      );
-      break;
-
-    case "React":
-      box.append(makeImageBar("react.png", "javascript.png", "typescript.png"));
-      break;
-
-    default:
-      break;
+  if (tagImages.hasOwnProperty(tag)) {
+    const images = tagImages[tag];
+    if (images instanceof Array) {
+      box.append(makeImageBar(...images));
+    } else {
+      const { image, license, author } = images;
+      box.append(makeLicensedImageBar(image, author, license));
+    }
   }
   box.append(
-    $("<h2></h2>").text("Topic: " + tag),
+    $("<h2></h2>").text(`My ${tag} Projects`),
+    $("<p></p>")
+      .attr("style", "font-style: italic; padding-bottom: 10px;")
+      .text(`Some projects I have worked on alone or in collaboration.`),
     ...projects
       .filter(({ tags: tags2 }) => tags2.indexOf(tag) !== -1)
-      .sort((p1, p2) => p1.name.localeCompare(p2.name))
+      .sort(sortProjects)
       .map((project) =>
         $("<div></div>")
+          .addClass("project-small-info")
           .append(
-            $("<p></p>").addClass("center").text(project.name),
+            $("<p></p>")
+              .addClass("center")
+              .text(`${project.name} (${project.year})`),
             $("<img>")
               .attr("src", "./images/projects/" + project.image)
               .addClass("project-image")
@@ -217,11 +273,3 @@ function showProjectsByTag(tag) {
       )
   );
 }
-
-(() => {
-  $("title").text("My Projects");
-  initializeMenu(true);
-  showTagList();
-  showProject(projects[0]);
-})();
-
