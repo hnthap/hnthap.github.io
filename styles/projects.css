@@ -1,0 +1,116 @@
+.project-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+
+    & .project-small {
+        --local-width: 130px;
+        --padding-horizontal: 7px;
+
+        display: flex;
+        flex-direction: column;
+        padding-top: calc(var(--padding-horizontal) * 1.2);
+        padding-left: var(--padding-horizontal);
+        padding-right: var(--padding-horizontal);
+        width: var(--local-width);
+
+        & img {
+            width: var(--local-width);
+            height: var(--local-width);
+            object-fit: cover;
+        }
+
+        & .project-title {
+            font-size: calc(var(--medium-font) * 0.8);
+            width: var(--local-width);
+            text-align: center;
+        }
+    }
+
+    & .project-small:hover {
+        background-color: var(--background-color-2);
+    }
+}
+
+#modal {
+    --border-radius: calc(var(--good-small-height) * 0.5);
+
+    & .modal-background {
+        position: fixed;  /* Positioned relative to the viewport */
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--color);
+        opacity: 0.8;
+    }
+
+    & .modal-content {
+        --position-vertical: min(8%, calc(var(--good-small-height) * 3));
+        --padding-horizontal: calc(var(--border-radius) * 2);
+
+        position: fixed;
+        opacity: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        border-radius: var(--border-radius);
+        top: var(--position-vertical);
+        bottom: var(--position-vertical);
+        right: min(20%, var(--good-small-height));
+        width: var(--root-min-width);
+        background-color: var(--background-color);
+        font-size: var(--small-font);
+
+        & #modal-image {
+            border-radius: var(--border-radius);
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            padding-top: var(--border-radius);
+            padding-bottom: var(--border-radius);
+        }
+
+        & .modal-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-left: var(--padding-horizontal);
+            padding-right: var(--padding-horizontal);
+            & p {
+                margin-bottom: calc(var(--good-small-height) * 0.2);
+            }
+        }
+
+        & #modal-title {
+            font-size: var(--medium-font);
+            font-weight: bold;
+        }
+
+        & #modal-time {
+            font-size: var(--small-font);
+            font-style: italic;
+            text-align: right;
+            padding-bottom: 10px;
+        }
+
+        & #modal-bullets {
+            padding-top: 10px;
+        }
+
+        & .modal-skills-container {
+            padding-top: 20px;
+        }
+
+        & p {
+            text-align: justify;
+            text-indent: calc(var(--border-radius) * 2);
+            padding-left: var(--padding-horizontal);
+            padding-right: calc(var(--padding-horizontal));
+            padding-top: 6px;
+            margin: 0;
+        }
+    }
+}

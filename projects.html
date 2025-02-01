@@ -1,44 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-      <title></title>
-      <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="./images/profile.jpg">
-    </head>
-    <body>
-        <div class="content">
-            <!-- HEADER -->
-            <div id="menu" class="blue header"></div>
-            <!-- END HEADER -->
-
-            <div class="row">
-                <!-- COLUMN LEFT -->
-                <div class="columnleft">
-                    <div id="project-box" class="box"></div>
-                    <div id="tag-project-box" class="box"></div>
-                </div>
-                <!-- END COLUMN LEFT -->
-
-                <!-- COLUMN RIGHT -->
-                <div class="columnright">
-                    <div id="project-highlights" class="blue box"></div>
-                    <div id="tags" class="blue box"></div>
-                </div>
-                <!-- END COLUMN RIGHT -->
-            </div>
-        </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="./utils.js"></script>
-        <script src="./project-list.js"></script>
-        <script src="./projects.js"></script>
-        <script lang="jquery">
-(() => {
-  $("title").text("My Projects");
-  initializeMenu(true);
-  showSmallHighlightList();
-  showTagList();
-  showProjects();
-})();
-        </script>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="./images/profile.jpg">
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+  <link rel="stylesheet" type="text/css" href="./styles/projects.css">
+</head>
+<body>
+  <div id="root"></div>
+  <div id="modal"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="./src/utility.js"></script>
+  <script src="./src/projects.data.js"></script>
+  <script src="./src/projects.js"></script>
+</body>
 </html>

@@ -1,68 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-      <title>hnthap from GitHub</title>
-      <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="./images/profile.jpg">
-    </head>
-    <body>
-        <div class="content">
-            <div id="menu" class="blue header"></div>
-
-            <div class="row">
-                <!-- COLUMN LEFT -->
-                <div class="columnleft">
-                    <div id="project" class="box">
-                        
-                    </div>
-                </div>
-                <!-- END COLUMN LEFT -->
-
-                <!-- COLUMN RIGHT -->
-                <div class="columnright">
-                    <div id="about-box" class="box">
-                        <div class="profile-div">
-                            <img src="./images/profile.jpg" alt="My profile image">
-                        </div>
-                        <p>Nice to meet you.</p>
-                        <p>I'm <a href="./about.html">Thap</a>, a CS student at UIT, Vietnam.</p>
-                    </div>
-                </div>
-                <!-- END COLUMN RIGHT -->
-            </div>
-        </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="./utils.js"></script>
-        <script src="./project-list.js"></script>
-        <script src="./projects.js"></script>
-        <script lang="jquery">
-            
-(() => {
-  $("h1").text("Welcome!");
-  initializeMenu(true);
-  appendBoxButton($("#about-box"), "ABOUT", "./about.html", true);
-
-  const highlight = highlights[0];
-  $("#project").append(
-    $("<h2></h2>").text("My recent project"),
-    $("<h3></h3>").text(highlight.name),
-    $("<div></div>")
-        .addClass("project-small-info")
-        .append(
-            $("<img>")
-                .attr("style", "width: 100%;")
-                .attr("src", "./images/projects/" + highlight.image),
-            $("<p></p>")
-                .attr("style", "text-indent: 1em;")
-                .text(highlight.description[0]),
-            $("<p></p>")
-                .attr("style", "font-style: italic; text-align: right;")
-                .text("Click to see more...")
-        )
-        .on("click", () => window.location.replace("./projects.html"))
-  );
-})();
-
-        </script>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="./images/profile.jpg">
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+  <link rel="stylesheet" type="text/css" href="./styles/index.css">
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="./src/utility.js"></script>
+  <script src="./src/index.js"></script>
+</body>
 </html>
