@@ -264,13 +264,12 @@ const Projects = [
     slidesUrl:
       "https://docs.google.com/presentation/d/" +
       "1-YqRb4C5tWUJo3MegXoxBurtoQWV5AC3/edit?usp=drive_link",
-    reportUrl: "https://github.com/hnthap/barebonesim",
-    codeUrl:
+    codeUrl: "https://github.com/hnthap/barebonesim",
+    demoUrl:
       "https://drive.google.com/file/d/1y-IIQErBsdHo7xsg7t01xQNsanJs-bAM/" +
       "view?usp=drive_link",
-    demoUrl: "https://huggingface.co/spaces/hnthap/banh-detector",
     demoTitle: "Live Demo",
-    imageUrl: "./images/barebonesim.png"
+    imageUrl: "./images/barebonesim.png",
   },
 ];
 
