@@ -9,7 +9,7 @@
  *
  * @typedef {{
  *  title: string;
- *  subtitle: string;
+ *  subtitles: string[];
  *  urls: string[];
  *  organization: string;
  *  time: string;
@@ -38,20 +38,30 @@
   const certificates = [
     {
       title: "Nvidia Certificate",
-      subtitle: "Applications of AI for Anomaly Detection",
+      subtitles: ["Applications of AI for Anomaly Detection"],
       urls: ["https://learn.nvidia.com/certificates?id=vLgidM8gQNKIcff_r83tCw"],
       organization: "Nvidia",
       time: "Nov 2024",
     },
     {
       title: "Google Career Certificate",
-      subtitle: "Google AI Essentials",
+      subtitles: ["Google AI Essentials"],
       urls: [
         "https://www.coursera.org/account/accomplishments/verify/" +
           "RIEO4HGVK5C4",
       ],
       organization: "Google",
       time: "Sep 2024",
+    },
+    {
+      title: "Test of English for International Communication (TOEIC)",
+      subtitles: [
+        "Listening - Reading:&nbsp;900/990",
+        "Speaking - Writing:&nbsp;290/400",
+      ],
+      urls: [],
+      organization: "Education Testing Service",
+      time: "Mar 2024",
     },
   ];
 
@@ -96,6 +106,10 @@ function Summary(itemList, emails, interests) {
     $("<p>").append(
       $("<span>").addClass("it").append("Interests:&nbsp;"),
       interests.join(", ") + "."
+    ),
+    $("<p>").append(
+      $("<span>").addClass("it").text("See more: "),
+      $("<a>").text("My Projects").attr("href", "/projects.html")
     )
   );
   const summary = $("<div>");
@@ -140,8 +154,12 @@ function Certificate(certificate) {
         .append(
           $("<span>")
             .addClass("it")
-            .append("&nbsp;&nbsp; " + certificate.subtitle),
-          CertificateVerify(certificate.urls)
+            .append(
+              certificate.subtitles.map((s) => "&nbsp;&nbsp; " + s).join("<br>")
+            ),
+          certificate.urls.length !== 0
+            ? CertificateVerify(certificate.urls)
+            : ""
         ),
       $("<td>").addClass("right it").text(certificate.time)
     )

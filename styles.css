@@ -6,9 +6,9 @@ html {
     --serif: 'Times New Roman', Times, serif;
     --sans-serif: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --border: 1px solid var(--color);
-    --large-font: 20pt;
-    --medium-font: 15pt;
-    --small-font: 12pt;
+    --large-font: 18pt;
+    --medium-font: 14pt;
+    --small-font: 11pt;
     --good-small-height: 25px;
     --root-max-width: 680px;
     --root-min-width: 400px;

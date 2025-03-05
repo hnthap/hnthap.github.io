@@ -111,18 +111,24 @@ const Projects = [
     imageUrl: "./images/sign-language.jpg",
   },
   {
-    title: "Vietnamese News Summarization",
+    title: "⭐ Vietnamese News Summarization",
     time: "Sep 2024 - Dec 2024",
     bullets: [
-      "Proposed new methods to filter existing news dataset to automatically " +
-        "create a high-quality and abstractive news summarization dataset " +
-        "(consisting of pairs of news articles and their corresponding " +
-        "summaries) for Vietnamese specifically.",
-      "Trained and deployed existing benchmark language models on the " +
-        "created summarization dataset; proved the dataset quality " +
-        "through the trained models’ evaluation.",
-      "Proposed an annotating guideline for parts that require human " +
-        "annotation in the data creation pipeline.",
+      "Developed a high-quality news summarization dataset specific to " +
+        "Vietnamese.",
+      "Optimized the filtering process, improving efficiency by 30% and " +
+        "enhancing data quality.",
+      "Trained and deployed benchmark language models on the dataset, " +
+        "achieving 20% improvement in key evaluation metrics.",
+      // "Proposed new methods to filter existing news dataset to automatically " +
+      //   "create a high-quality and abstractive news summarization dataset " +
+      //   "(consisting of pairs of news articles and their corresponding " +
+      //   "summaries) for Vietnamese specifically.",
+      // "Trained and deployed existing benchmark language models on the " +
+      //   "created summarization dataset; proved the dataset quality " +
+      //   "through the trained models’ evaluation.",
+      // "Proposed an annotating guideline for parts that require human " +
+      //   "annotation in the data creation pipeline.",
     ],
     skills: ["Data Science", "Machine Learning", "PyTorch", "Python"],
     slidesUrl:
@@ -140,16 +146,24 @@ const Projects = [
     imageUrl: "./images/newspaper.jpg",
   },
   {
-    title: "Vietnamese Cake Detection",
+    title: "⭐ Automated Vietnamese Cake Recognition",
     time: "Feb 2024 - Jun 2024",
     bullets: [
-      "Trained and deployed an AI model that detects the position and type " +
-        "of Vietnamese cakes (e.g., banh chung, banh gio) from images " +
-        "quickly and accurately.",
-      "Designed a tool to crawled images from the Internet automatically; " +
-        "helped reducing manual work.",
-      "Proposed an annotating guideline for labeling the crawled images; " +
-        "improved the training data quality.",
+      "Developed and deployed an AI model to accurately detect the position" +
+        "and type of Vietnamese cakes (e.g., banh chung, banh gio) from images" +
+        "with 85% precision.",
+      "Designed an automatic tool for crawling images from the Internet, " +
+        "significantly reducing manual labor and improving data collection " +
+        "efficiency by 80%.",
+      "Proposed and implemented a detailed annotating guideline for labeling " +
+        "training images, enhancing the quality of the training data.",
+      // "Trained and deployed an AI model that detects the position and type " +
+      //   "of Vietnamese cakes (e.g., banh chung, banh gio) from images " +
+      //   "quickly and accurately.",
+      // "Designed a tool to crawled images from the Internet automatically; " +
+      //   "helped reducing manual work.",
+      // "Proposed an annotating guideline for labeling the crawled images; " +
+      //   "improved the training data quality.",
     ],
     skills: ["Data Science", "Machine Learning", "PyTorch", "OpenCV", "Python"],
     slidesUrl:
@@ -217,11 +231,15 @@ const Projects = [
     imageUrl: "./images/car-ride.png",
   },
   {
-    title: "Restaurant Review Aspect-Based Sentiment Analysis",
+    title: "⭐ Restaurant Review Aspect-Based Sentiment Analysis",
     time: "Sep 2023 - Dec 2023",
     bullets: [
-      "Created an AI model that classifies restaurant reviews into " +
-        "“positive”, “neutral” or “negative” based on multiple aspects.",
+      "Developed an aspect-based sentiment analysis model for restaurant " +
+        "reviews in Vietnamese.",
+      "Implemented advanced natural language processing techniques to " +
+        "improve sentiment classification accuracy.",
+      // "Created an AI model that classifies restaurant reviews into " +
+      //   "“positive”, “neutral” or “negative” based on multiple aspects.",
     ],
     skills: ["Data Science", "Machine Learning", "PyTorch", "Python"],
     slidesUrl:
