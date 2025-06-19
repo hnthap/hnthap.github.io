@@ -1,14 +1,16 @@
 html {
     --color: #000;
     --color-2: #656565;
+    --color-gold: #fbcb3f;
+    --color-gold-2: #fad76c;
     --background-color: #dedede;
     --background-color-2: #fff;
     --serif: 'Times New Roman', Times, serif;
     --sans-serif: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --border: 1px solid var(--color);
     --large-font: 18pt;
-    --medium-font: 14pt;
-    --small-font: 11pt;
+    --medium-font: 13pt;
+    --small-font: 10pt;
     --good-small-height: 25px;
     --root-max-width: 680px;
     --root-min-width: 400px;
@@ -81,8 +83,10 @@ p {
 
 .h2-block {
     h2 {
+        font-variant: small-caps;
+        font-weight: normal;
         font-size: var(--medium-font);
-        margin-bottom: calc(var(--large-font) * (-0.25));
+        margin-bottom: calc(var(--large-font) * (-0.33));
     }
 }
 

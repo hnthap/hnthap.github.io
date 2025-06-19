@@ -1,3 +1,7 @@
+html {
+    --border-radius: 10px;
+}
+
 .project-container {
     display: flex;
     flex-direction: row;
@@ -7,19 +11,25 @@
 
     & .project-small {
         --local-width: 130px;
-        --padding-horizontal: 7px;
+        --padding-horizontal: 5px;
+        --margin-vertical: 5px;
 
         display: flex;
         flex-direction: column;
+        border-radius: var(--border-radius);
         padding-top: calc(var(--padding-horizontal) * 1.2);
         padding-left: var(--padding-horizontal);
         padding-right: var(--padding-horizontal);
         width: var(--local-width);
+        margin-top: var(--margin-vertical);
+        margin-bottom: var(--margin-vertical);
+        transition: 0.3s;
 
         & img {
             width: var(--local-width);
             height: var(--local-width);
             object-fit: cover;
+            border-radius: var(--border-radius);
         }
 
         & .project-title {
@@ -31,6 +41,10 @@
 
     & .project-small:hover {
         background-color: var(--background-color-2);
+    }
+
+    & .project-small-starred:hover {
+        background-color: var(--color-gold-2);
     }
 }
 

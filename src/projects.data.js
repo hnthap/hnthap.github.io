@@ -39,37 +39,42 @@
 
 /** @type {ProjectItem[]} */
 const Projects = [
-  {
-    title: "Furniture Commercial App",
-    time: "Sep 2024 - Dec 2024",
-    bullets: [
-      "Implemented a customer-focused commercial mobile app specialized in " +
-        "furniture products.",
-      "Made the app cross-platform by implementing it using React Native " +
-        "and server–client architecture.",
-    ],
-    skills: [
-      "React Native",
-      "Express",
-      "SQL",
-      "JavaScript/TypeScript",
-      "SQLite",
-    ],
-    slidesUrl:
-      "https://docs.google.com/presentation/d/" +
-      "1sAqUDdmubmH0FZT7Eq6QeORNJZPQ55Pa",
-    reportUrl:
-      "https://drive.google.com/file/d/" +
-      "1oORJHgGCogJYi_fdawhnqS6RGpzm25Ao/view?usp=sharing",
-    codeUrl: "https://github.com/hnthap/furniture_selling_app",
-    imageUrl: "./images/furniture-app.png",
-  },
+  // {
+  //   title: "Furniture Commercial App",
+  //   time: "Sep 2024 - Dec 2024",
+  //   bullets: [
+  //     "Implemented a customer-focused commercial mobile app specialized in " +
+  //       "furniture products.",
+  //     "Made the app cross-platform by implementing it using React Native " +
+  //       "and server–client architecture.",
+  //   ],
+  //   skills: [
+  //     "React Native",
+  //     "Express",
+  //     "SQL",
+  //     "JavaScript/TypeScript",
+  //     "SQLite",
+  //   ],
+  //   slidesUrl:
+  //     "https://docs.google.com/presentation/d/" +
+  //     "1sAqUDdmubmH0FZT7Eq6QeORNJZPQ55Pa",
+  //   reportUrl:
+  //     "https://drive.google.com/file/d/" +
+  //     "1oORJHgGCogJYi_fdawhnqS6RGpzm25Ao/view?usp=sharing",
+  //   codeUrl: "https://github.com/hnthap/furniture_selling_app",
+  //   imageUrl: "./images/furniture-app.png",
+  // },
   {
     title: "Vietnamese Invoice Information Extraction",
     time: "Sep 2024 - Dec 2024",
     bullets: [
-      "Implemented and trained a model that extracts necessary information " +
-        "from invoices in Vietnamese, referencing recent advanced researches.",
+      "Developed a Machine Learning pipeline integrating Text Detection and " +
+        "Optical Character Recognition with Deep Learning techniques, " +
+        "implementing core data processing and model integration " +
+        "architecture.",
+      "Built ReactJS frontend interface connected to PyTorch model via " +
+        "FastAPI backend, designing a scalable system architecture for " +
+        "automated invoice processing for the Vietnamese language.",
     ],
     skills: [
       "Machine Learning",
@@ -79,6 +84,7 @@ const Projects = [
       "OpenCV",
       "Python",
       "JavaScript/TypeScript",
+      "React",
     ],
     slidesUrl:
       "https://drive.google.com/file/d/1I7TDQ73osCg6QX-hnpNC-Pq2x_eHn2fs" +
@@ -111,15 +117,24 @@ const Projects = [
     imageUrl: "./images/sign-language.jpg",
   },
   {
-    title: "⭐ Vietnamese News Summarization",
+    title: "⭐Vietnamese News Summarization",
     time: "Sep 2024 - Dec 2024",
     bullets: [
-      "Developed a high-quality news summarization dataset specific to " +
-        "Vietnamese.",
-      "Optimized the filtering process, improving efficiency by 30% and " +
-        "enhancing data quality.",
-      "Trained and deployed benchmark language models on the dataset, " +
-        "achieving 20% improvement in key evaluation metrics.",
+      "Created a Vietnamese news summarization dataset from 100,000+ " +
+        "unfiltered news articles using rigorous automated quality " +
+        "checks that resulted in 1,800 high-quality article–summary " +
+        "pairs, which were evaluated by fine-tuning Deep Learning " +
+        "models. Researched existing automated summarization methods " +
+        "for Vietnamese.",
+      "Achieved a 25% improvement in ROUGE-L scores and 23% increase in " +
+        "BERTScore Recall on fine-tuned T5 models. " +
+        "Deployed a complete chatbot with the trained model.",
+      // "Developed a high-quality news summarization dataset specific to " +
+      //   "Vietnamese.",
+      // "Optimized the filtering process, improving efficiency by 30% and " +
+      //   "enhancing data quality.",
+      // "Trained and deployed benchmark language models on the dataset, " +
+      //   "achieving 20% improvement in key evaluation metrics.",
       // "Proposed new methods to filter existing news dataset to automatically " +
       //   "create a high-quality and abstractive news summarization dataset " +
       //   "(consisting of pairs of news articles and their corresponding " +
@@ -149,14 +164,21 @@ const Projects = [
     title: "⭐ Automated Vietnamese Cake Recognition",
     time: "Feb 2024 - Jun 2024",
     bullets: [
-      "Developed and deployed an AI model to accurately detect the position" +
-        "and type of Vietnamese cakes (e.g., banh chung, banh gio) from images" +
-        "with 85% precision.",
-      "Designed an automatic tool for crawling images from the Internet, " +
-        "significantly reducing manual labor and improving data collection " +
-        "efficiency by 80%.",
-      "Proposed and implemented a detailed annotating guideline for labeling " +
-        "training images, enhancing the quality of the training data.",
+      "Fine-tuned and deployed a Deep Learning Computer Vision system " +
+        "using YOLO architecture, achieving 85% precision in " +
+        "classifying Vietnamese traditional cakes from diverse image " +
+        "inputs.",
+      "Engineered and optimized image crawling and annotation workflows, " +
+        "resulting in a significant 80% reduction in manual data " +
+        "preparation through automation.",
+      // "Developed and deployed an AI model to accurately detect the position" +
+      //   "and type of Vietnamese cakes (e.g., banh chung, banh gio) from images" +
+      //   "with 85% precision.",
+      // "Designed an automatic tool for crawling images from the Internet, " +
+      //   "significantly reducing manual labor and improving data collection " +
+      //   "efficiency by 80%.",
+      // "Proposed and implemented a detailed annotating guideline for labeling " +
+      //   "training images, enhancing the quality of the training data.",
       // "Trained and deployed an AI model that detects the position and type " +
       //   "of Vietnamese cakes (e.g., banh chung, banh gio) from images " +
       //   "quickly and accurately.",
@@ -197,29 +219,35 @@ const Projects = [
       "1dm4MOiApQpBSxboqekLIUiBqmIMf8r_v?usp=sharing",
     imageUrl: "./images/gia-dinh-bao.jpg",
   },
-  {
-    title: "Credit Risk Detection",
-    time: "Feb 2024 - Jun 2024",
-    bullets: [
-      "Trained a model that predicts whether a client will default based on " +
-        "existing data.",
-    ],
-    skills: ["Data Science", "Machine Learning", "Python"],
-    slidesUrl:
-      "https://drive.google.com/file/d/1JJEstjS3JJbvpblhkf5ryf9Fw9z4C8WT/" +
-      "view?usp=sharing",
-    reportUrl:
-      "https://www.kaggle.com/code/huynhnhanthap/home-credit-2024-p4ml" +
-      "?scriptVersionId=219006927",
-    imageUrl: "./images/bank.jpeg",
-  },
+  // {
+  //   title: "Credit Risk Detection",
+  //   time: "Feb 2024 - Jun 2024",
+  //   bullets: [
+  //     "Trained a model that predicts whether a client will default based on " +
+  //       "existing data.",
+  //   ],
+  //   skills: ["Data Science", "Machine Learning", "Python"],
+  //   slidesUrl:
+  //     "https://drive.google.com/file/d/1JJEstjS3JJbvpblhkf5ryf9Fw9z4C8WT/" +
+  //     "view?usp=sharing",
+  //   reportUrl:
+  //     "https://www.kaggle.com/code/huynhnhanthap/home-credit-2024-p4ml" +
+  //     "?scriptVersionId=219006927",
+  //   imageUrl: "./images/bank.jpeg",
+  // },
   {
     title: "Car Simulator",
     time: "Feb 2024 - Jun 2024",
     bullets: [
-      "Designed and deployed a car simulator running directly on browsers, " +
-        "where users can ride a car on a 3D landscape that introduces " +
-        "various famous buildings from Paris.",
+      "Collaborated on developing server-side logic and data management " +
+        "for a web-based application, optimizing performance through " +
+        "efficient architecture and collaborative debugging processes.",
+      "Designed and deployed a browser-based 3D car simulator with HTML, " +
+        "CSS and JavaScript (Three.js and React) via Vite, enabling user " +
+        "controls and interactive features.",
+      // "Designed and deployed a car simulator running directly on browsers, " +
+      //   "where users can ride a car on a 3D landscape that introduces " +
+      //   "various famous buildings from Paris.",
     ],
     skills: ["Vite", "ThreeJS", "React", "JavaScript/TypeScript"],
     slidesUrl:
@@ -234,10 +262,16 @@ const Projects = [
     title: "⭐ Restaurant Review Aspect-Based Sentiment Analysis",
     time: "Sep 2023 - Dec 2023",
     bullets: [
-      "Developed an aspect-based sentiment analysis model for restaurant " +
-        "reviews in Vietnamese.",
-      "Implemented advanced natural language processing techniques to " +
-        "improve sentiment classification accuracy.",
+      "Engineered multiple sentiment analysis models, leveraging " +
+        "fine-tuned PhoBERT and XLM-R weights within customized " +
+        "architectures, to categorize over 1,000 Vietnamese restaurant " +
+        "reviews by different aspects such as food and service quality.",
+      "Improved classification accuracy by 20% over existing techniques " +
+        "through the strategic integration of enhanced input features.",
+      // "Developed an aspect-based sentiment analysis model for restaurant " +
+      //   "reviews in Vietnamese.",
+      // "Implemented advanced natural language processing techniques to " +
+      //   "improve sentiment classification accuracy.",
       // "Created an AI model that classifies restaurant reviews into " +
       //   "“positive”, “neutral” or “negative” based on multiple aspects.",
     ],
@@ -273,10 +307,16 @@ const Projects = [
     title: "Barebonesim: Educational Barebone Compiler",
     time: "Feb 2023 - Jun 2023",
     bullets: [
-      "Designed a desktop code editor to run the Barebone programming " +
-        "language for educational use.",
-      "Developed an easy-to-use cross-platform application using Java and " +
-        "JavaFX.",
+      "Designed a cross-platform desktop code editor using Java and " +
+        "JavaFX to support the BareBone programming language for " +
+        "educational purposes; utilizing various types of controls " +
+        "and components for a fully functional, easy-to-use UI.",
+      "Directed the project timeline and resources, identifying and " +
+        "implementing key enhancements."
+      // "Designed a desktop code editor to run the Barebone programming " +
+      //   "language for educational use.",
+      // "Developed an easy-to-use cross-platform application using Java and " +
+      //   "JavaFX.",
     ],
     skills: ["Gradle", "Java"],
     slidesUrl:

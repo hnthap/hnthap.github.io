@@ -1,7 +1,7 @@
 .summary {
     --padding-vertical: 25px;
     --padding-horizontal: 20px;
-    --portrait-width: min(30%, 160px);
+    --portrait-width: min(25%, 100px);
     --portrait-height: calc(var(--portrait-width) * 472 / 354);
 
     font-family: var(--serif);
@@ -20,7 +20,7 @@
     }
 
     & .content {
-        --margin-horizontal: 18px;
+        --margin-horizontal: 25px;
 
         flex: 1;
         margin-left: var(--margin-horizontal);

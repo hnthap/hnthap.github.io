@@ -47,7 +47,13 @@
 function ProjectSmallContainer(projects) {
   const div = $("<div>");
   div.addClass("project-container");
-  div.append(...projects.map(ProjectSmallView));
+  const starredProjects = projects.filter(({ title }) =>
+    title.startsWith("⭐")
+  );
+  const normalProjects = projects.filter(({ title }) =>
+    !title.startsWith("⭐")
+  );
+  div.append(...[...starredProjects, ...normalProjects].map(ProjectSmallView));
   return div;
 }
 
@@ -64,6 +70,9 @@ function ProjectSmallView(project) {
   text.text(project.title);
   const div = $("<div>");
   div.addClass("project-small");
+  if (project.title.startsWith("⭐")) {
+    div.addClass("project-small-starred");
+  }
   div.append(image, text);
   div.on("click", () => showModal(project));
   return div;

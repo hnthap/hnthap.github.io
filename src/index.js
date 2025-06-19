@@ -14,13 +14,21 @@
  *  organization: string;
  *  time: string;
  * }} CertificateItem
+ *
+ * @typedef {{
+ *  school: string;
+ *  location: string;
+ *  degree: string;
+ *  graduationDate: string;
+ *  graduated: boolean;
+ * }} EducationItem
  */
 
 (function () {
   /** @type {SummaryItem[]} */
   const summaryItems = [
     {
-      title: "Senior Computer Science Student",
+      title: "Fresh Computer Science Graduate",
       organization:
         "University of Information Technology, " +
         "Vietnam National University - HCMC",
@@ -32,35 +40,41 @@
     "deep learning",
     "natural language processing",
     "computer vision",
-    "front-end development",
+  ];
+  /** @type {EducationItem[]} */
+  const educationItems = [
+    {
+      school: "University of Information Technology, VNU-HCM",
+      location: "Vietnam",
+      degree: "Bachelor of Science in Computer Science",
+      graduationDate: "Mar 2025",
+      graduated: true,
+    },
   ];
   /** @type {CertificateItem[]} */
   const certificates = [
     {
-      title: "Nvidia Certificate",
+      title: "NVIDIA Certificate",
       subtitles: ["Applications of AI for Anomaly Detection"],
       urls: ["https://learn.nvidia.com/certificates?id=vLgidM8gQNKIcff_r83tCw"],
-      organization: "Nvidia",
+      organization: "NVIDIA",
       time: "Nov 2024",
     },
-    {
-      title: "Google Career Certificate",
-      subtitles: ["Google AI Essentials"],
-      urls: [
-        "https://www.coursera.org/account/accomplishments/verify/" +
-          "RIEO4HGVK5C4",
-      ],
-      organization: "Google",
-      time: "Sep 2024",
-    },
+    // {
+    //   title: "Google Career Certificate",
+    //   subtitles: ["Google AI Essentials"],
+    //   urls: [
+    //     "https://www.coursera.org/account/accomplishments/verify/" +
+    //       "RIEO4HGVK5C4",
+    //   ],
+    //   organization: "Google",
+    //   time: "Sep 2024",
+    // },
     {
       title: "Test of English for International Communication (TOEIC)",
-      subtitles: [
-        "Listening - Reading:&nbsp;900/990",
-        "Speaking - Writing:&nbsp;290/400",
-      ],
+      subtitles: ["Listening - Reading:&nbsp;900/990"],
       urls: [],
-      organization: "Education Testing Service",
+      organization: "ETS",
       time: "Mar 2024",
     },
   ];
@@ -70,6 +84,8 @@
   $("#root").append(
     PageTop(FULL_NAME),
     Summary(summaryItems, emails, interests),
+    ProjectList(),
+    EducationList(educationItems),
     CertificateList(certificates)
   );
 })();
@@ -106,10 +122,6 @@ function Summary(itemList, emails, interests) {
     $("<p>").append(
       $("<span>").addClass("it").append("Interests:&nbsp;"),
       interests.join(", ") + "."
-    ),
-    $("<p>").append(
-      $("<span>").addClass("it").text("See more: "),
-      $("<a>").text("My Projects").attr("href", "/projects.html")
     )
   );
   const summary = $("<div>");
@@ -125,6 +137,34 @@ function Portrait() {
   return portrait;
 }
 
+function ProjectList() {
+  const span = $("<span>");
+  span.append(
+    Section("Projects"),
+    $("<p>")
+      .addClass("experience")
+      .append(
+        $("<span>").append("&nbsp;&nbsp; See more: "),
+        $("<a>")
+          .addClass("it")
+          .text("My Projects")
+          .attr("href", "/projects.html")
+      )
+  );
+  return span;
+}
+
+/**
+ *
+ * @param {EducationItem[]} educationItems
+ * @returns {JQuery<HTMLElement>}
+ */
+function EducationList(educationItems) {
+  const span = $("<span>");
+  span.append(Section("Education"), ...educationItems.map(Education));
+  return span;
+}
+
 /**
  *
  * @param {CertificateItem[]} certificates
@@ -138,14 +178,42 @@ function CertificateList(certificates) {
 
 /**
  *
+ * @param {EducationItem} item
+ * @returns {JQuery<HTMLElement>}
+ */
+function Education(item) {
+  const table = $("<table>");
+  table.addClass("experience");
+  table.append(
+    $("<tr>").append(
+      $("<td>").addClass("left").text(item.school),
+      $("<td>").addClass("right").text(item.location)
+    ),
+    $("<tr>").append(
+      $("<td>")
+        .addClass("left it")
+        .append("&nbsp;&nbsp; " + item.degree),
+      $("<td>").addClass("right it").append(
+        // (item.graduated ? "Graduated" : "Expected Graduation Date") +
+        //   ": " +
+        item.graduationDate
+      )
+    )
+  );
+  return table;
+}
+
+/**
+ *
  * @param {CertificateItem} certificate
+ * @returns {JQuery<HTMLElement>}
  */
 function Certificate(certificate) {
   const table = $("<table>");
   table.addClass("experience");
   table.append(
     $("<tr>").append(
-      $("<td>").addClass("left").append($("<strong>").text(certificate.title)),
+      $("<td>").addClass("left").text(certificate.title),
       $("<td>").addClass("right").text(certificate.organization)
     ),
     $("<tr>").append(
