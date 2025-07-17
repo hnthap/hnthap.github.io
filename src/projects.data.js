@@ -34,6 +34,7 @@
  *  demoUrl?: string;
  *  demoTitle?: string;
  *  imageUrl?: string;
+ *  featured: boolean;
  * }} ProjectItem
  */
 
@@ -65,6 +66,20 @@ const Projects = [
   //   imageUrl: "./images/furniture-app.png",
   // },
   {
+    title: "Lunar Calendar API",
+    time: "2024",
+    bullets: [
+      "Converting between the Gregorian and Lunar calendars.",
+      "Built on top of the astronomical formulae from " +
+        "Astronomical Algorithms by Jean Meeus (1998) and Ho Ngoc Duc's " +
+        "Lunar calendar calculator.",
+    ],
+    skills: ["Express", "JavaScript/TypeScript"],
+    codeUrl: "https://github.com/hnthap/lunar-calendar-api",
+    imageUrl: "./images/earth-moon.jpg",
+    featured: false,
+  },
+  {
     title: "Vietnamese Invoice Information Extraction",
     time: "Sep 2024 - Dec 2024",
     bullets: [
@@ -95,6 +110,7 @@ const Projects = [
     codeUrl:
       "https://github.com/hnthap/invoice_extraction_webapp/blob/main/HOW.md",
     imageUrl: "./images/invoice.png",
+    featured: false,
   },
   {
     title: "Sign Language Video-to-Text Translation",
@@ -115,9 +131,10 @@ const Projects = [
       "https://drive.google.com/drive/folders/" +
       "1k9TDxe0B1_S9GE9-no3fibkioHcFdwk_?usp=drive_link",
     imageUrl: "./images/sign-language.jpg",
+    featured: false,
   },
   {
-    title: "⭐Vietnamese News Summarization",
+    title: "Vietnamese News Summarization",
     time: "Sep 2024 - Dec 2024",
     bullets: [
       "Created a Vietnamese news summarization dataset from 100,000+ " +
@@ -159,9 +176,10 @@ const Projects = [
       "https://huggingface.co/spaces/hnthap/vietnamese-news-summary-ds310",
     demoTitle: "Live Demo",
     imageUrl: "./images/newspaper.jpg",
+    featured: true,
   },
   {
-    title: "⭐ Automated Vietnamese Cake Recognition",
+    title: "Automated Vietnamese Cake Recognition",
     time: "Feb 2024 - Jun 2024",
     bullets: [
       "Fine-tuned and deployed a Deep Learning Computer Vision system " +
@@ -199,6 +217,7 @@ const Projects = [
     demoUrl: "https://huggingface.co/spaces/hnthap/banh-detector",
     demoTitle: "Live Demo",
     imageUrl: "./images/banh-chung.jpg",
+    featured: true,
   },
   {
     title: "Part-of-Speech Tagging for Vietnamese",
@@ -218,6 +237,7 @@ const Projects = [
       "https://drive.google.com/drive/folders/" +
       "1dm4MOiApQpBSxboqekLIUiBqmIMf8r_v?usp=sharing",
     imageUrl: "./images/gia-dinh-bao.jpg",
+    featured: false,
   },
   // {
   //   title: "Credit Risk Detection",
@@ -257,9 +277,10 @@ const Projects = [
     demoUrl: "https://pariscar.netlify.app/",
     demoTitle: "Live Demo",
     imageUrl: "./images/car-ride.png",
+    featured: false,
   },
   {
-    title: "⭐ Restaurant Review Aspect-Based Sentiment Analysis",
+    title: "Restaurant Review Aspect-Based Sentiment Analysis",
     time: "Sep 2023 - Dec 2023",
     bullets: [
       "Engineered multiple sentiment analysis models, leveraging " +
@@ -283,6 +304,7 @@ const Projects = [
       "https://drive.google.com/file/d/" +
       "1-ALRI-lJoqmjclAIVaTo1CRRwinX-EPr/view?usp=sharing",
     imageUrl: "./images/restaurant.jpeg",
+    featured: true,
   },
   {
     title: "Image Restoration Model",
@@ -302,6 +324,7 @@ const Projects = [
       "https://drive.google.com/drive/folders/" +
       "1uWM8kABuaLsFAV2Cq2pYAaEDAiNQBBmC?usp=sharing",
     imageUrl: "./images/distortion.jpg",
+    featured: false,
   },
   {
     title: "Barebonesim: Educational Barebone Compiler",
@@ -312,7 +335,7 @@ const Projects = [
         "educational purposes; utilizing various types of controls " +
         "and components for a fully functional, easy-to-use UI.",
       "Directed the project timeline and resources, identifying and " +
-        "implementing key enhancements."
+        "implementing key enhancements.",
       // "Designed a desktop code editor to run the Barebone programming " +
       //   "language for educational use.",
       // "Developed an easy-to-use cross-platform application using Java and " +
@@ -328,6 +351,7 @@ const Projects = [
       "view?usp=drive_link",
     demoTitle: "Live Demo",
     imageUrl: "./images/barebonesim.png",
+    featured: false,
   },
 ];
 

@@ -8,9 +8,9 @@ html {
     --serif: 'Times New Roman', Times, serif;
     --sans-serif: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --border: 1px solid var(--color);
-    --large-font: 18pt;
-    --medium-font: 14pt;
-    --small-font: 11pt;
+    --large-font: 20pt;
+    --medium-font: 16pt;
+    --small-font: 12pt;
     --good-small-height: 25px;
     --root-max-width: 680px;
     --root-min-width: 400px;
@@ -75,9 +75,13 @@ p {
 
     & .menu-item-a {
         color: var(--color-2);
-        font-weight: bold;
+        font-weight: normal;
         line-height: var(--good-small-height);
         font-size: var(--medium-font);
+    }
+
+    & .current-menu-item {
+        font-weight: bold;
     }
 }
 
@@ -125,4 +129,21 @@ p {
 
 .invisible {
     visibility: hidden;
+}
+
+.featured-image-container {
+    position: relative;
+    display: inline-block;
+
+    & .main-image {
+        display: block;
+    }
+
+    & .small-star {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px !important;
+        height: 50px !important;
+    }
 }

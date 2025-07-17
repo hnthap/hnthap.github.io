@@ -82,12 +82,14 @@
   document.title = FULL_NAME;
 
   $("#root").append(
-    PageTop(FULL_NAME),
+    PageTop(),
     Summary(summaryItems, emails, interests),
     ProjectList(),
     EducationList(educationItems),
     CertificateList(certificates)
   );
+
+  $("#menu-item-Home").addClass("current-menu-item");
 })();
 
 /**

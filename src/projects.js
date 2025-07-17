@@ -1,7 +1,7 @@
 (function () {
   document.title = `${FULL_NAME}'s Projects`;
   $("#root").append(
-    PageTop(`${FULL_NAME} &mdash; Projects`),
+    PageTop(),
     ProjectSmallContainer(Projects)
   );
   $("#modal")
@@ -37,6 +37,7 @@
             )
         )
     );
+  $("#menu-item-Projects").addClass("current-menu-item");
 })();
 
 /**
@@ -47,12 +48,8 @@
 function ProjectSmallContainer(projects) {
   const div = $("<div>");
   div.addClass("project-container");
-  const starredProjects = projects.filter(({ title }) =>
-    title.startsWith("⭐")
-  );
-  const normalProjects = projects.filter(({ title }) =>
-    !title.startsWith("⭐")
-  );
+  const starredProjects = projects.filter(({ featured }) => featured);
+  const normalProjects = projects.filter(({ featured }) => !featured);
   div.append(...[...starredProjects, ...normalProjects].map(ProjectSmallView));
   return div;
 }
@@ -63,17 +60,18 @@ function ProjectSmallContainer(projects) {
  * @returns {JQuery<HTMLElement>}
  */
 function ProjectSmallView(project) {
-  const image = $("<img>");
-  image.attr("src", project.imageUrl ?? "./images/golden-cube.png");
-  const text = $("<p>");
-  text.addClass("project-title");
-  text.text(project.title);
-  const div = $("<div>");
-  div.addClass("project-small");
-  if (project.title.startsWith("⭐")) {
-    div.addClass("project-small-starred");
+  const imagePath = project.imageUrl ?? "./images/golden-cube.png";
+  const image = $("<img>").attr("src", imagePath);
+  const text = $("<p>").addClass("project-title").text(project.title);
+  const div = $("<div>").addClass("project-small");
+  if (project.featured) {
+    const imageContainer = $("<div>").addClass("featured-image-container");
+    imageContainer.append(image.addClass("main-image"), Star("gold"))
+    div.addClass("project-small-starred").append(imageContainer, text);
   }
-  div.append(image, text);
+  else {
+    div.append(image, text);
+  }
   div.on("click", () => showModal(project));
   return div;
 }

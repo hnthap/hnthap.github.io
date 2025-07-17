@@ -13,13 +13,18 @@ const Images = {
   PROFILE: "./images/profile.jpg",
 };
 
+const Settings = {
+  showsFullName: false,
+};
+
 /**
- * 
- * @param {string} bannerText 
  * @returns {JQuery<HTMLElement>}
  */
-function PageTop(bannerText) {
-  return $("<span>").append(Banner(bannerText), Menu());
+function PageTop() {
+  if (Settings.showsFullName) {
+    return $("<span>").append(Banner(FULL_NAME), Menu());
+  }
+  return $("<span>").append(Menu());
 }
 
 /**
@@ -31,6 +36,7 @@ function MenuItem(name, url, target) {
   const a = $("<a>");
   a.addClass("menu-item-a");
   a.attr("href", url);
+  a.attr("id", "menu-item-" + name);
   a.text(name);
   if (target) {
     a.attr("target", target);
@@ -86,4 +92,23 @@ function Section(text) {
   block.addClass("h2-block");
   block.append($("<h2>").append("&nbsp;" + text), $("<hr>"));
   return block;
+}
+
+/**
+ * 
+ * @param {"gold" | "blue"} type 
+ */
+function Star(type) {
+  let imagePath;
+  if (type === "blue") {
+    imagePath = "./images/blue-star.png";
+  }
+  else if (type === "gold") {
+    imagePath = "./images/gold-star.png";
+  }
+  else {
+    console.warn("Invalid star type: " + type);
+    return $("");
+  }
+  return $("<img>").attr("src", imagePath).addClass("small-star");
 }
