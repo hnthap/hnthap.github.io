@@ -355,6 +355,26 @@ const Projects = [
   },
 ];
 
+/**
+ * @type {Pick<ProjectItem, "title" | "bullets" | "skills">[]}
+ */
+// @ts-ignore
+const LowerCasedProjects = Projects.map((project) => {
+  const obj = {
+    title: project.title.toLowerCase(),
+    bullets: project.bullets.map(() => ""),
+    skills: project.skills.map(() => ""),
+  };
+  for (let i = 0; i < project.bullets.length; i += 1) {
+    obj.bullets[i] = project.bullets[i].toLowerCase();
+  }
+  for (let i = 0; i < project.skills.length; i += 1) {
+    //@ts-ignore
+    obj.skills[i] = project.skills[i].toLowerCase();
+  }
+  return obj;
+});
+
 /** @type {SkillName[]} */
 const ShownSkills = [
   "Data Science",

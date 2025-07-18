@@ -13,10 +13,10 @@ const Accounts = {
 };
 
 const Images = {
+  DARK_MODE: "./images/dark-mode.png",
+  LIGHT_MODE: "./images/light-mode.png",
   PORTRAIT: "./images/portrait.jpg",
   PROFILE: "./images/profile.jpg",
-  LIGHT_MODE: "./images/light-mode.png",
-  DARK_MODE: "./images/dark-mode.png",
 };
 
 /**
@@ -75,6 +75,7 @@ function Avatar() {
  */
 function Banner(bannerText) {
   const a = $("<a>");
+  a.attr("id", "banner-clickable");
   a.append(bannerText);
   a.attr("href", "./");
   const banner = $("<div>")

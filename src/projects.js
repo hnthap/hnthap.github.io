@@ -1,8 +1,11 @@
+const mask = Projects.map(() => true);
+
 (function () {
   document.title = `${FULL_NAME}'s Projects`;
   $("#root").append(
     PageTop(),
-    ProjectSmallContainer(Projects)
+    ProjectSearchBar(),
+    ProjectSmallContainer()
   );
   $("#modal")
     .addClass("invisible")
@@ -43,16 +46,30 @@
   $("#menu-item-projects").addClass("current-menu-item");
 })();
 
+function populateProjectContainer() {
+  const masked = Projects.filter((_, i) => mask[i]);
+  const featuredProjects = masked.filter(({ featured }) => featured);
+  const otherProjects = masked.filter(({ featured }) => !featured);
+  console.log(featuredProjects.length, otherProjects.length);
+  $("#project-container")
+    .html("")
+    .append(...[...featuredProjects, ...otherProjects].map(ProjectSmallView));
+}
+
 /**
  *
- * @param {ProjectItem[]} projects
  * @returns {JQuery<HTMLElement>}
  */
-function ProjectSmallContainer(projects) {
-  const div = $("<div>");
-  div.addClass("project-container");
-  const featuredProjects = projects.filter(({ featured }) => featured);
-  const otherProjects = projects.filter(({ featured }) => !featured);
+function ProjectSmallContainer() {
+  const div = $("<div>")
+    .addClass("project-container")
+    .attr("id", "project-container");
+  for (let i = 0; i < mask.length; ++i) {
+    mask[i] = true;
+  }
+  const featuredProjects = Projects.filter(({ featured }) => featured);
+  const otherProjects = Projects.filter(({ featured }) => !featured);
+  console.log(featuredProjects.length, otherProjects.length);
   div.append(...[...featuredProjects, ...otherProjects].map(ProjectSmallView));
   return div;
 }
@@ -130,4 +147,39 @@ function showModal(project) {
   modal
     .find("#modal-skills")
     .text(project.skills ? project.skills.join(", ") : "N/A");
+}
+
+function ProjectSearchBar() {
+  const inputId = "#project-search-bar-input";
+  return $("<div>")
+    .addClass("search-bar-container")
+    .append(
+      $("<input>")
+        .addClass("search-bar")
+        .attr("spellcheck", "false")
+        .attr("placeholder", "Enter something...")
+        .attr("id", inputId.slice(1))
+        .attr("type", "text")
+        .on("keyup cut paste", () => {
+          // @ts-ignore
+          const text = $(inputId).val().toLowerCase().split(" ").join(" ");
+          if (text.length === 0) {
+            for (let i = 0; i < mask.length; ++i) {
+              mask[i] = true;
+            }
+          } else {
+            LowerCasedProjects.forEach((project, index) => {
+              mask[index] =
+                project.title.includes(text) ||
+                project.bullets.reduce((state, bullet) => {
+                  return state ? state : bullet.includes(text);
+                }, false) ||
+                project.skills.reduce((state, skill) => {
+                  return state ? state : skill.includes(text);
+                }, false);
+            });
+          }
+          populateProjectContainer();
+        })
+    );
 }
