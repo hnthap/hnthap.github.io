@@ -37,7 +37,7 @@
             )
         )
     );
-  $("#menu-item-Projects").addClass("current-menu-item");
+  $("#menu-item-projects").addClass("current-menu-item");
 })();
 
 /**
@@ -48,9 +48,9 @@
 function ProjectSmallContainer(projects) {
   const div = $("<div>");
   div.addClass("project-container");
-  const starredProjects = projects.filter(({ featured }) => featured);
-  const normalProjects = projects.filter(({ featured }) => !featured);
-  div.append(...[...starredProjects, ...normalProjects].map(ProjectSmallView));
+  const featuredProjects = projects.filter(({ featured }) => featured);
+  const otherProjects = projects.filter(({ featured }) => !featured);
+  div.append(...[...featuredProjects, ...otherProjects].map(ProjectSmallView));
   return div;
 }
 
@@ -112,7 +112,6 @@ function showModal(project) {
   const modalDemoUrl = modal.find("#modal-demo-url");
   if (project.demoUrl) {
     modalDemoUrl
-
       .attr("href", project.demoUrl)
       .text(project.demoTitle ?? "Demo");
   } else {

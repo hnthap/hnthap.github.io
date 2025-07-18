@@ -26,4 +26,9 @@
         margin-left: var(--margin-horizontal);
         margin-right: var(--margin-horizontal);
     }
+
+    & .full-name {
+        font-size: var(--medium-font);
+        color: var(--text)
+    }
 }

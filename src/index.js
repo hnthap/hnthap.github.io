@@ -89,7 +89,7 @@
     CertificateList(certificates)
   );
 
-  $("#menu-item-Home").addClass("current-menu-item");
+  $("#menu-item-home").addClass("current-menu-item");
 })();
 
 /**
@@ -103,7 +103,7 @@ function Summary(itemList, emails, interests) {
   content.addClass("content");
   content.append(
     $("<p>").append(
-      $("<strong>").text(FULL_NAME).css("font-size", "var(--medium-font)"),
+      $("<strong>").text(FULL_NAME).addClass("full-name"),
       " &nbsp; [&nbsp;",
       $("<a>").text("GitHub").attr("href", Accounts.GITHUB),
       " | ",

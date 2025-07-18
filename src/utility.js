@@ -1,5 +1,9 @@
 "strict";
 
+/**
+ * 
+ * @typedef {"dark" | null} ColorScheme
+ */
 
 const FULL_NAME = "Huynh Nhan Thap";
 
@@ -11,10 +15,19 @@ const Accounts = {
 const Images = {
   PORTRAIT: "./images/portrait.jpg",
   PROFILE: "./images/profile.jpg",
+  LIGHT_MODE: "./images/light-mode.png",
+  DARK_MODE: "./images/dark-mode.png",
 };
 
+/**
+ * @type {{
+ * showsFullName: boolean;
+ * mode: ColorScheme;
+ * }}
+ */
 const Settings = {
   showsFullName: false,
+  mode: detectColorScheme(),
 };
 
 /**
@@ -36,7 +49,7 @@ function MenuItem(name, url, target) {
   const a = $("<a>");
   a.addClass("menu-item-a");
   a.attr("href", url);
-  a.attr("id", "menu-item-" + name);
+  a.attr("id", "menu-item-" + name.toLowerCase());
   a.text(name);
   if (target) {
     a.attr("target", target);
@@ -78,7 +91,8 @@ function Menu() {
     MenuItem("Home", "./"),
     MenuItem("Projects", "./projects.html"),
     MenuItem("GitHub", Accounts.GITHUB, "_blank"),
-    MenuItem("LinkedIn", Accounts.LINKED_IN, "_blank")
+    MenuItem("LinkedIn", Accounts.LINKED_IN, "_blank"),
+    ModeIcon()
   );
   return menu;
 }
@@ -110,5 +124,64 @@ function Star(type) {
     console.warn("Invalid star type: " + type);
     return $("");
   }
-  return $("<img>").attr("src", imagePath).addClass("small-star");
+  return $("<img>")
+    .attr("src", imagePath)
+    .attr("alt", "Featured project")
+    .addClass("small-star");
+}
+
+function detectColorScheme() {
+  /** @type {ColorScheme} */
+  let theme = null;
+  if (localStorage.getItem("theme")) {
+    if (localStorage.getItem("theme") === "dark") {
+      theme = "dark";
+    }
+  }
+  else if (!window.matchMedia) {
+    console.warn("matchMedia method is not supported!");
+    return null;
+  }
+  else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    theme = "dark";
+  }
+  if (theme === "dark") {
+    $("body").addClass("dark");
+  }
+  else {
+    $("body").removeClass("dark");
+  }
+  return theme;
+}
+
+function switchColorScheme() {
+  if (Settings.mode === "dark") {
+    /** Switch to light mode */
+    localStorage.setItem("theme", "light");
+    $("body").removeClass("dark");
+    $("#mode-icon-img").attr("src", Images.DARK_MODE);
+    Settings.mode = null;
+  }
+  else {
+    /** Switch to dark mode */
+    localStorage.setItem("theme", "dark");
+    $("body").addClass("dark");
+    $("#mode-icon-img").attr("src", Images.LIGHT_MODE);
+    Settings.mode = "dark";
+  }
+}
+
+function ModeIcon() {
+  const container = $("<div>")
+    .addClass("mode-icon")
+    .append(
+      $("<img>")
+        .attr("id", "mode-icon-img")
+        .attr(
+          "src",
+          Settings.mode === "dark" ? Images.LIGHT_MODE : Images.DARK_MODE
+        )
+        .on("click", switchColorScheme)
+    );
+  return container;
 }

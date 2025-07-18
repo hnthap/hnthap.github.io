@@ -40,11 +40,32 @@ html {
     }
 
     & .project-small:hover {
-        background-color: var(--background-color-2);
+        background-color: var(--bg-important);
     }
 
     & .project-small-starred:hover {
-        background-color: var(--color-gold-2);
+        background-color: var(--primary);
+    }
+}
+
+@media (width <= 700px) {
+    .project-container {
+        flex-direction: column;
+    }
+
+    .project-small {
+        margin: auto;
+        width: 90% !important;
+
+        & img {
+            margin: auto;
+            width: 90% !important;
+            height: calc(2 * var(--local-width)) !important;
+        }
+    }
+
+    .project-title {
+        width: 100% !important;
     }
 }
 
@@ -74,14 +95,14 @@ html {
         bottom: var(--position-vertical);
         right: min(20%, var(--good-small-height));
         width: var(--root-min-width);
-        background-color: var(--background-color);
+        background-color: var(--bg);
         font-size: var(--small-font);
 
         & #modal-image {
             border-radius: var(--border-radius);
             width: 100%;
             height: 200px;
-            object-fit: contain;
+            object-fit: cover;
             padding-top: calc(var(--border-radius) * 2);
             padding-bottom: var(--border-radius);
         }
