@@ -3,38 +3,46 @@
     --bg-base: hsl(0, 0%, 95%);
     --bg: hsl(0, 0%, 90%);
     --bg-important: hsl(0, 0%, 85%);
-    --text: hsl(0, 0%, 10%);
-    --text-muted: hsl(0, 0%, 30%);
+    --text: hsl(0, 0%, 5%);
+    --text-muted: hsl(0, 0%, 25%);
     --primary: hsl(51, 100%, 70%);
     /* --danger: hsl(); */
     /* --warning: hsl(); */
     /* --success: hsl(); */
     /* --info: hsl(); */
+    --link: hsl(220, 100%, 45%);
+    --link-visited: hsl(270, 100%, 40%);
+    --link-hover: hsl(220, 90%, 40%);
+    --link-active: var(--text);
     --border: 1px solid hsl(0, 0%, 70%);
     --serif: 'Times New Roman', Times, serif;
     --sans-serif: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* --large-font: 20pt;
     --medium-font: 16pt;
     --small-font: 12pt; */
-    --large-font: 4rem;
+    --large-font: 3.2rem;
     --medium-font: 1.5rem;
     --small-font: 1rem;
     --good-small-height: 25px;
     --root-max-width: 680px;
-    --root-min-width: 400px;
+    --root-min-width: 200px;
 }
 
 body.dark {
     --bg-base: hsl(0, 0%, 5%);
     --bg: hsl(0, 0%, 10%);
     --bg-important: hsl(0, 0%, 15%);
-    --text: hsl(0, 0%, 90%);
-    --text-muted: hsl(0, 0%, 70%);
+    --text: hsl(0, 0%, 95%);
+    --text-muted: hsl(0, 0%, 75%);
     --primary: hsl(51, 100%, 30%);
     /* --danger: hsl(); */
     /* --warning: hsl(); */
     /* --success: hsl(); */
     /* --info: hsl(); */
+    --link: hsl(220, 100%, 55%);
+    --link-visited: hsl(270, 100%, 60%);
+    --link-hover: hsl(220, 90%, 60%);
+    --link-active: var(--text);
     --border: 1px solid hsl(0, 0%, 30%);
 }
 
@@ -46,7 +54,18 @@ body {
 }
 
 a {
+    color: var(--link);
     text-decoration: none;
+}
+a:visited {
+    color: var(--link-visited);
+}
+a:hover, a:focus {
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+a:active {
+    color: var(--link-active);
 }
 
 h1, h2, h3 {
@@ -90,7 +109,7 @@ p {
     padding-bottom: var(--padding-vertical);
     padding-left: var(--padding-horizontally);
     padding-right: var(--padding-horizontally);
-    font-family: var(--sans-serif);
+    font-variant: small-caps;
 
     /* & .profile {
         border-radius: 50%;
@@ -192,8 +211,8 @@ p {
         position: absolute;
         top: 10px;
         right: 5px;
-        width: 40px !important;
-        height: 40px !important;
+        width: 50px !important;
+        height: 50px !important;
         filter: drop-shadow(1px 0px 0px hsl(0, 0, 60%))
         drop-shadow(0px 1px 0px hsl(0, 0, 60%))
         drop-shadow(-1px 0px 0px hsl(0, 0, 60%))

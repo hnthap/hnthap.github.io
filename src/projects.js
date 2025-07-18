@@ -17,15 +17,18 @@
           $("<div>")
             .addClass("modal-row")
             .append(
-              $("<span>").append("[&nbsp;&nbsp;"),
-              $("<a>").attr("id", "modal-slides-url").text("Slides"),
-              $("<span>").append("&nbsp;&nbsp;|&nbsp;&nbsp;"),
-              $("<a>").attr("id", "modal-report-url").text("Report"),
-              $("<span>").append("&nbsp;&nbsp;|&nbsp;&nbsp;"),
-              $("<a>").attr("id", "modal-code-url").text("Code"),
-              $("<span>").append("&nbsp;&nbsp;|&nbsp;&nbsp;"),
-              $("<a>").attr("id", "modal-demo-url").text("Demo"),
-              $("<span>").append("&nbsp;&nbsp;]")
+              $("<a>")
+                .attr("id", "modal-slides-url")
+                .html("&nbsp;&nbsp;Slides&nbsp;&nbsp;"),
+              $("<a>")
+                .attr("id", "modal-report-url")
+                .html("&nbsp;&nbsp;Report&nbsp;&nbsp;"),
+              $("<a>")
+                .attr("id", "modal-code-url")
+                .html("&nbsp;&nbsp;Code&nbsp;&nbsp;"),
+              $("<a>")
+                .attr("id", "modal-demo-url")
+                .html("&nbsp;&nbsp;Demo&nbsp;&nbsp;"),
             ),
           $("<div>").attr("id", "modal-bullets"),
           $("<p>")
@@ -91,31 +94,34 @@ function showModal(project) {
   }
   modal.find("#modal-title").text(project.title);
   modal.find("#modal-time").text(project.time);
-  const modalSlidesUrl = modal.find("#modal-slides-url");
+
   if (project.slidesUrl) {
-    modalSlidesUrl.attr("href", project.slidesUrl);
+    modal.find("#modal-slides-url").attr("href", project.slidesUrl).show();
   } else {
-    modalSlidesUrl.removeAttr("href");
+    modal.find("#modal-slides-url").hide();
   }
-  const modalReportUrl = modal.find("#modal-report-url");
+  if (project.slidesUrl) {
+    modal.find("#modal-slides-url").attr("href", project.slidesUrl).show();
+  } else {
+    modal.find("#modal-slides-url").hide();
+  }
   if (project.reportUrl) {
-    modalReportUrl.attr("href", project.reportUrl);
+    modal.find("#modal-report-url").attr("href", project.reportUrl).show();
   } else {
-    modalReportUrl.removeAttr("href");
+    modal.find("#modal-report-url").hide();
   }
-  const modalCodeUrl = modal.find("#modal-code-url");
   if (project.codeUrl) {
-    modalCodeUrl.attr("href", project.codeUrl);
+    modal.find("#modal-code-url").attr("href", project.codeUrl).show();
   } else {
-    modalCodeUrl.removeAttr("href");
+    modal.find("#modal-code-url").hide();
   }
-  const modalDemoUrl = modal.find("#modal-demo-url");
+  const modalDemoUrl = modal
+    .find("#modal-demo-url")
+    .html("&nbsp;&nbsp;" + (project.demoTitle ?? "Demo") + "&nbsp;&nbsp;");
   if (project.demoUrl) {
-    modalDemoUrl
-      .attr("href", project.demoUrl)
-      .text(project.demoTitle ?? "Demo");
+    modalDemoUrl.attr("href", project.demoUrl).show();
   } else {
-    modalDemoUrl.removeAttr("href").text("Demo");
+    modalDemoUrl.hide();
   }
   modal
     .find("#modal-bullets")

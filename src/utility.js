@@ -26,7 +26,7 @@ const Images = {
  * }}
  */
 const Settings = {
-  showsFullName: false,
+  showsFullName: true,
   mode: detectColorScheme(),
 };
 
