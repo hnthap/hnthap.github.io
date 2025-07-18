@@ -89,7 +89,7 @@
     CertificateList(certificates)
   );
 
-  $("#menu-item-home").addClass("current-menu-item");
+  markActiveMenuItem("Home");
 })();
 
 /**

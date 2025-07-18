@@ -34,7 +34,7 @@
  *  demoUrl?: string;
  *  demoTitle?: string;
  *  imageUrl?: string;
- *  featured: boolean;
+ *  rating: "featured" | "good" | "normal";
  * }} ProjectItem
  */
 
@@ -77,7 +77,7 @@ const Projects = [
     skills: ["Express", "JavaScript/TypeScript"],
     codeUrl: "https://github.com/hnthap/lunar-calendar-api",
     imageUrl: "./images/earth-moon.jpg",
-    featured: false,
+    rating: "good",
   },
   {
     title: "Vietnamese Invoice Information Extraction",
@@ -110,7 +110,7 @@ const Projects = [
     codeUrl:
       "https://github.com/hnthap/invoice_extraction_webapp/blob/main/HOW.md",
     imageUrl: "./images/invoice.png",
-    featured: false,
+    rating: "normal",
   },
   {
     title: "Sign Language Video-to-Text Translation",
@@ -131,7 +131,7 @@ const Projects = [
       "https://drive.google.com/drive/folders/" +
       "1k9TDxe0B1_S9GE9-no3fibkioHcFdwk_?usp=drive_link",
     imageUrl: "./images/sign-language.jpg",
-    featured: false,
+    rating: "normal",
   },
   {
     title: "Vietnamese News Summarization",
@@ -176,7 +176,7 @@ const Projects = [
       "https://huggingface.co/spaces/hnthap/vietnamese-news-summary-ds310",
     demoTitle: "Live Demo",
     imageUrl: "./images/newspaper.jpg",
-    featured: true,
+    rating: "featured",
   },
   {
     title: "Automated Vietnamese Cake Recognition",
@@ -217,7 +217,7 @@ const Projects = [
     demoUrl: "https://huggingface.co/spaces/hnthap/banh-detector",
     demoTitle: "Live Demo",
     imageUrl: "./images/banh-chung.jpg",
-    featured: true,
+    rating: "featured",
   },
   {
     title: "Part-of-Speech Tagging for Vietnamese",
@@ -237,7 +237,7 @@ const Projects = [
       "https://drive.google.com/drive/folders/" +
       "1dm4MOiApQpBSxboqekLIUiBqmIMf8r_v?usp=sharing",
     imageUrl: "./images/gia-dinh-bao.jpg",
-    featured: false,
+    rating: "normal",
   },
   // {
   //   title: "Credit Risk Detection",
@@ -277,7 +277,7 @@ const Projects = [
     demoUrl: "https://pariscar.netlify.app/",
     demoTitle: "Live Demo",
     imageUrl: "./images/car-ride.png",
-    featured: false,
+    rating: "good",
   },
   {
     title: "Restaurant Review Aspect-Based Sentiment Analysis",
@@ -304,7 +304,7 @@ const Projects = [
       "https://drive.google.com/file/d/" +
       "1-ALRI-lJoqmjclAIVaTo1CRRwinX-EPr/view?usp=sharing",
     imageUrl: "./images/restaurant.jpeg",
-    featured: true,
+    rating: "featured",
   },
   {
     title: "Image Restoration Model",
@@ -324,7 +324,7 @@ const Projects = [
       "https://drive.google.com/drive/folders/" +
       "1uWM8kABuaLsFAV2Cq2pYAaEDAiNQBBmC?usp=sharing",
     imageUrl: "./images/distortion.jpg",
-    featured: false,
+    rating: "normal",
   },
   {
     title: "Barebonesim: Educational Barebone Compiler",
@@ -351,7 +351,7 @@ const Projects = [
       "view?usp=drive_link",
     demoTitle: "Live Demo",
     imageUrl: "./images/barebonesim.png",
-    featured: false,
+    rating: "good",
   },
 ];
 

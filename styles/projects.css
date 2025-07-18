@@ -46,6 +46,10 @@ html {
     & .project-small-starred:hover {
         background-color: var(--primary);
     }
+
+    & .project-small-good:hover {
+        background-color: var(--secondary);
+    }
 }
 
 @media (width <= 700px) {

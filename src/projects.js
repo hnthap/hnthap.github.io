@@ -43,17 +43,24 @@ const mask = Projects.map(() => true);
             )
         )
     );
-  $("#menu-item-projects").addClass("current-menu-item");
+  markActiveMenuItem("Projects")
 })();
 
 function populateProjectContainer() {
   const masked = Projects.filter((_, i) => mask[i]);
-  const featuredProjects = masked.filter(({ featured }) => featured);
-  const otherProjects = masked.filter(({ featured }) => !featured);
+  const featuredProjects = masked.filter(({ rating }) => rating === "featured");
+  const goodProjects = masked.filter(({ rating }) => rating === "good");
+  const otherProjects = masked.filter(
+    ({ rating }) => rating !== "featured" && rating !== "good"
+  );
   console.log(featuredProjects.length, otherProjects.length);
   $("#project-container")
     .html("")
-    .append(...[...featuredProjects, ...otherProjects].map(ProjectSmallView));
+    .append(
+      ...[...featuredProjects, ...goodProjects, ...otherProjects].map(
+        ProjectSmallView
+      )
+    );
 }
 
 /**
@@ -67,10 +74,18 @@ function ProjectSmallContainer() {
   for (let i = 0; i < mask.length; ++i) {
     mask[i] = true;
   }
-  const featuredProjects = Projects.filter(({ featured }) => featured);
-  const otherProjects = Projects.filter(({ featured }) => !featured);
-  console.log(featuredProjects.length, otherProjects.length);
-  div.append(...[...featuredProjects, ...otherProjects].map(ProjectSmallView));
+  const featuredProjects = Projects.filter(
+    ({ rating }) => rating === "featured"
+  );
+  const goodProjects = Projects.filter(({ rating }) => rating === "good");
+  const otherProjects = Projects.filter(
+    ({ rating }) => rating !== "featured" && rating !== "good"
+  );
+  div.append(
+    ...[...featuredProjects, ...goodProjects, ...otherProjects].map(
+      ProjectSmallView
+    )
+  );
   return div;
 }
 
@@ -84,12 +99,25 @@ function ProjectSmallView(project) {
   const image = $("<img>").attr("src", imagePath);
   const text = $("<p>").addClass("project-title").text(project.title);
   const div = $("<div>").addClass("project-small");
-  if (project.featured) {
-    const imageContainer = $("<div>").addClass("featured-image-container");
-    imageContainer.append(image.addClass("main-image"), Star("gold"))
-    div.addClass("project-small-starred").append(imageContainer, text);
-  }
-  else {
+  if (project.rating === "featured") {
+    div
+      .addClass("project-small-starred")
+      .append(
+        $("<div>")
+          .addClass("featured-image-container")
+          .append(image.addClass("main-image"), Star("gold")),
+        text
+      );
+  } else if (project.rating === "good") {
+    div
+      .addClass("project-small-good")
+      .append(
+        $("<div>")
+          .addClass("featured-image-container")
+          .append(image.addClass("main-image"), Star("blue")),
+        text
+      );
+  } else {
     div.append(image, text);
   }
   div.on("click", () => showModal(project));

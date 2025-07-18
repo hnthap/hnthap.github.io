@@ -1,7 +1,7 @@
 "strict";
 
 /**
- * 
+ *
  * @typedef {"dark" | null} ColorScheme
  */
 
@@ -61,7 +61,7 @@ function MenuItem(name, url, target) {
 }
 
 function Avatar() {
-  const avatar = $("<img>")
+  const avatar = $("<img>");
   avatar.addClass("profile");
   avatar.attr("src", Images.PROFILE);
   avatar.attr("height", "40px");
@@ -69,8 +69,8 @@ function Avatar() {
 }
 
 /**
- * 
- * @param {string} bannerText 
+ *
+ * @param {string} bannerText
  * @returns {JQuery<HTMLElement>}
  */
 function Banner(bannerText) {
@@ -78,16 +78,14 @@ function Banner(bannerText) {
   a.attr("id", "banner-clickable");
   a.append(bannerText);
   a.attr("href", "./");
-  const banner = $("<div>")
+  const banner = $("<div>");
   banner.addClass("banner");
   banner.append(a);
   return banner;
 }
 
 function Menu() {
-  const menu = $("<div>");
-  menu.addClass("menu");
-  menu.append(
+  return $("<div>").addClass("menu").append(
     // $("<a>").attr("href", Accounts.GITHUB).append(Avatar()),
     MenuItem("Home", "./"),
     MenuItem("Projects", "./projects.html"),
@@ -95,39 +93,47 @@ function Menu() {
     MenuItem("LinkedIn", Accounts.LINKED_IN, "_blank"),
     ModeIcon()
   );
-  return menu;
 }
 
 /**
  * 
- * @param {string} text 
+ * @param {string} name 
+ */
+function markActiveMenuItem(name) {
+  $("#menu-item-" + name.toLowerCase()).addClass("current-menu-item");
+}
+
+/**
+ *
+ * @param {string} text
  */
 function Section(text) {
-  const block = $("<div>");
-  block.addClass("h2-block");
-  block.append($("<h2>").append("&nbsp;" + text), $("<hr>"));
-  return block;
+  return $("<div>")
+    .addClass("h2-block")
+    .append($("<h2>").append(text), $("<div>").addClass("hr"));
 }
 
 /**
- * 
- * @param {"gold" | "blue"} type 
+ *
+ * @param {"gold" | "blue"} type
  */
 function Star(type) {
   let imagePath;
+  let altText;
   if (type === "blue") {
     imagePath = "./images/blue-star.png";
-  }
-  else if (type === "gold") {
+    altText = "Good Project";
+  } else if (type === "gold") {
     imagePath = "./images/gold-star.png";
-  }
-  else {
+    altText = "Featured Project";
+  } else {
     console.warn("Invalid star type: " + type);
     return $("");
   }
   return $("<img>")
     .attr("src", imagePath)
-    .attr("alt", "Featured project")
+    .attr("alt", altText)
+    .attr("title", altText)
     .addClass("small-star");
 }
 
@@ -138,18 +144,15 @@ function detectColorScheme() {
     if (localStorage.getItem("theme") === "dark") {
       theme = "dark";
     }
-  }
-  else if (!window.matchMedia) {
+  } else if (!window.matchMedia) {
     console.warn("matchMedia method is not supported!");
     return null;
-  }
-  else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     theme = "dark";
   }
   if (theme === "dark") {
     $("body").addClass("dark");
-  }
-  else {
+  } else {
     $("body").removeClass("dark");
   }
   return theme;
@@ -160,14 +163,17 @@ function switchColorScheme() {
     /** Switch to light mode */
     localStorage.setItem("theme", "light");
     $("body").removeClass("dark");
-    $("#mode-icon-img").attr("src", Images.DARK_MODE);
+    $("#mode-icon-img")
+      .attr("src", Images.DARK_MODE)
+      .css("background-color", "var(--bg-base)");
     Settings.mode = null;
-  }
-  else {
+  } else {
     /** Switch to dark mode */
     localStorage.setItem("theme", "dark");
     $("body").addClass("dark");
-    $("#mode-icon-img").attr("src", Images.LIGHT_MODE);
+    $("#mode-icon-img")
+      .attr("src", Images.LIGHT_MODE)
+      .css("background-color", "var(--primary)");
     Settings.mode = "dark";
   }
 }
@@ -181,6 +187,12 @@ function ModeIcon() {
         .attr(
           "src",
           Settings.mode === "dark" ? Images.LIGHT_MODE : Images.DARK_MODE
+        )
+        .attr("alt", "Light/Dark Mode")
+        .attr("title", "Toggle Light/Dark Mode")
+        .css(
+          "background-color",
+          Settings.mode === "dark" ? "var(--primary)" : "var(--bg-base)"
         )
         .on("click", switchColorScheme)
     );
