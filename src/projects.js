@@ -2,11 +2,7 @@ const mask = Projects.map(() => true);
 
 (function () {
   document.title = `${FULL_NAME}'s Projects`;
-  $("#root").append(
-    PageTop(),
-    ProjectSearchBar(),
-    ProjectSmallContainer()
-  );
+  $("#root").append(PageTop(), ProjectSearchBar(), ProjectSmallContainer());
   $("#modal")
     .addClass("invisible")
     .append(
@@ -15,6 +11,42 @@ const mask = Projects.map(() => true);
         .addClass("modal-content")
         .append(
           $("<img>").attr("id", "modal-image"),
+          $("<div>")
+            .addClass("modal-row")
+            .attr("id", "modal-github-stats")
+            .append(
+              [
+                {
+                  name: "modal-stargazer-count",
+                  icon: "star.png",
+                  title: "Star Count",
+                },
+                {
+                  name: "modal-fork-count",
+                  icon: "focus.png",
+                  title: "Fork Count",
+                },
+                {
+                  name: "modal-watcher-count",
+                  icon: "pin.png",
+                  title: "Watcher Count",
+                },
+              ].map(({ name, icon, title }) =>
+                $("<div>")
+                  .addClass("modal-github-stats-item")
+                  .attr("id", "modal-github-stats-item-" + name)
+                  .attr("title", title)
+                  .append(
+                    $("<img>")
+                      .addClass("modal-github-stats-icon")
+                      .attr("src", "images/" + icon),
+                    $("<div>")
+                      .addClass("modal-github-stats-count")
+                      .attr("id", name)
+                      .html("0")
+                  )
+              )
+            ),
           $("<p>").attr("id", "modal-title").text("Title"),
           $("<p>").attr("id", "modal-time").text("Time"),
           $("<div>")
@@ -31,7 +63,7 @@ const mask = Projects.map(() => true);
                 .html("&nbsp;&nbsp;Code&nbsp;&nbsp;"),
               $("<a>")
                 .attr("id", "modal-demo-url")
-                .html("&nbsp;&nbsp;Demo&nbsp;&nbsp;"),
+                .html("&nbsp;&nbsp;Demo&nbsp;&nbsp;")
             ),
           $("<div>").attr("id", "modal-bullets"),
           $("<p>")
@@ -43,7 +75,7 @@ const mask = Projects.map(() => true);
             )
         )
     );
-  markActiveMenuItem("Projects")
+  markActiveMenuItem("Projects");
 })();
 
 function populateProjectContainer() {
@@ -129,6 +161,82 @@ function hideModal() {
 }
 
 /**
+ * @param {JQuery<HTMLElement>} modal
+ * @param {ProjectItem} project
+ */
+function loadGitHubStats(modal, project) {
+  modal.find("#modal-github-stats").hide();
+  if (
+    typeof project.codeUrl === "string" &&
+    project.codeUrl.startsWith("https://github.com/")
+  ) {
+    const groups =
+      /^https:\/\/github.com\/([a-zA-Z09_-]+)\/([a-zA-Z09_-]+)/.exec(
+        project.codeUrl
+      );
+    if (groups && groups.length >= 3) {
+      const owner = groups[1];
+      const repo = groups[2];
+      loadGitHubStatsFromAPI(modal, owner, repo);
+    }
+  }
+}
+
+/**
+ * @param {JQuery<HTMLElement>} modal
+ * @param {string} owner 
+ * @param {string} repo
+ */
+async function loadGitHubStatsFromAPI(modal, owner, repo) {
+  const sessionData = sessionStorage.getItem("hnthap_github_io_session_data");
+  let data = sessionData ? JSON.parse(sessionData) : {};
+  if (!data.hasOwnProperty("github_stats")) {
+    data.github_stats = {};
+  }
+  if (!data.github_stats.hasOwnProperty(owner)) {
+    data.github_stats[owner] = {};
+  }
+  if (!data.github_stats[owner].hasOwnProperty(repo)) {
+    data.github_stats[owner][repo] = {};
+  }
+  if (
+    !data.github_stats[owner][repo].hasOwnProperty("starCount") ||
+    !data.github_stats[owner][repo].hasOwnProperty("forkCount") ||
+    !data.github_stats[owner][repo].hasOwnProperty("watcherCount")
+  ) {
+    const response = await fetch(
+      "https://api.github.com/repos/" + owner + "/" + repo
+    );
+    const fetchedData = await response.json();
+    data.github_stats[owner][repo].starCount = fetchedData.stargazers_count;
+    data.github_stats[owner][repo].forkCount = fetchedData.forks_count;
+    data.github_stats[owner][repo].watcherCount = fetchedData.watchers_count;
+  }
+  const { starCount, forkCount, watcherCount } = data.github_stats[owner][repo];
+  sessionStorage.setItem("hnthap_github_io_session_data", JSON.stringify(data));
+  modal.find("#modal-github-stats").hide();
+  if (starCount) {
+    modal.find("#modal-github-stats-item-modal-stargazer-count").show();
+    modal.find("#modal-stargazer-count").html(starCount);
+  } else {
+    modal.find("#modal-github-stats-item-modal-stargazer-count").hide();
+  }
+  if (forkCount) {
+    modal.find("#modal-github-stats-item-modal-fork-count").show();
+    modal.find("#modal-fork-count").html(forkCount);
+  } else {
+    modal.find("#modal-github-stats-item-modal-fork-count").hide();
+  }
+  if (watcherCount) {
+    modal.find("#modal-github-stats-item-modal-watcher-count").show();
+    modal.find("#modal-watcher-count").html(watcherCount);
+  } else {
+    modal.find("#modal-github-stats-item-modal-watcher-count").hide();
+  }
+  modal.find("#modal-github-stats").show();
+}
+
+/**
  *
  * @param {ProjectItem} project
  */
@@ -160,6 +268,9 @@ function showModal(project) {
   } else {
     modal.find("#modal-code-url").hide();
   }
+
+  loadGitHubStats(modal, project);
+
   const modalDemoUrl = modal
     .find("#modal-demo-url")
     .html("&nbsp;&nbsp;" + (project.demoTitle ?? "Demo") + "&nbsp;&nbsp;");

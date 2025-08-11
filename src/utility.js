@@ -87,10 +87,10 @@ function Banner(bannerText) {
 function Menu() {
   return $("<div>").addClass("menu").append(
     // $("<a>").attr("href", Accounts.GITHUB).append(Avatar()),
-    MenuItem("Home", "./"),
-    MenuItem("Projects", "./projects.html"),
-    MenuItem("GitHub", Accounts.GITHUB, "_blank"),
-    MenuItem("LinkedIn", Accounts.LINKED_IN, "_blank"),
+    MenuItem("home", "./"),
+    MenuItem("projects", "./projects.html"),
+    MenuItem("github", Accounts.GITHUB, "_blank"),
+    MenuItem("linkedin", Accounts.LINKED_IN, "_blank"),
     ModeIcon()
   );
 }

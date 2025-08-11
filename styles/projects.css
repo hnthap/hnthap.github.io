@@ -82,7 +82,7 @@ html {
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: var(--color);
+        background-color: var(--bg-important);
         opacity: 0.8;
     }
 
@@ -150,6 +150,38 @@ html {
             padding-right: calc(var(--padding-horizontal));
             padding-top: 10px;
             margin: 0;
+        }
+
+        & #modal-github-stats {
+            user-select: none;
+        }
+        
+        & .modal-github-stats-item {
+            display: flex;
+            flex-direction: row;
+            padding-left: 0.6rem;
+            padding-right: 0.6rem;
+            padding-top: 0.6rem;
+            padding-bottom: 0.6rem;
+            font-family: var(--sans-serif);
+            font-size: calc(0.8 * var(--small-font));
+        }
+        
+        & .modal-github-stats-icon {
+            opacity: 0.8;
+            width: 1rem;
+            height: 1rem;
+            padding-left: 0.2rem;
+            padding-right: 0.2rem;
+        }
+        
+        & .modal-github-stats-count {
+            height: 1rem;
+            line-height: 1rem;
+            padding-left: 0.4rem;
+            padding-right: 0.4rem;
+            padding-top: calc(0.1 * var(--small-font));
+            padding-bottom: calc(0.1 * var(--small-font));
         }
     }
 }
