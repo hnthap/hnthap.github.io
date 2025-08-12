@@ -1,4 +1,4 @@
-"strict";
+"use strict";
 
 /**
  *
@@ -46,26 +46,24 @@ function PageTop() {
  * @param {string} [target] E.g. `"_blank"`
  */
 function MenuItem(name, url, target) {
-  const a = $("<a>");
-  a.addClass("menu-item-a");
-  a.attr("href", url);
-  a.attr("id", "menu-item-" + name.toLowerCase());
-  a.text(name);
+  const a = $("<a>")
+    .addClass("menu-item-a")
+    .attr("href", url)
+    .attr("id", "menu-item-" + name.toLowerCase())
+    .attr("rel", "noopener noreferrer")
+    .text(name);
   if (target) {
     a.attr("target", target);
   }
-  const item = $("<div>");
-  item.append(a);
-  item.addClass("menu-item");
-  return item;
+  return $("<div>").append(a).addClass("menu-item");
 }
 
 function Avatar() {
-  const avatar = $("<img>");
-  avatar.addClass("profile");
-  avatar.attr("src", Images.PROFILE);
-  avatar.attr("height", "40px");
-  return avatar;
+  return $("<img>")
+    .addClass("profile")
+    .attr("src", Images.PROFILE)
+    .attr("alt", "Avatar")
+    .attr("height", "40px");
 }
 
 /**
@@ -74,14 +72,15 @@ function Avatar() {
  * @returns {JQuery<HTMLElement>}
  */
 function Banner(bannerText) {
-  const a = $("<a>");
-  a.attr("id", "banner-clickable");
-  a.append(bannerText);
-  a.attr("href", "./");
-  const banner = $("<div>");
-  banner.addClass("banner");
-  banner.append(a);
-  return banner;
+  return $("<div>")
+    .addClass("banner")
+    .append(
+      $("<a>")
+        .attr("id", "banner-clickable")
+        .append(bannerText)
+        .attr("rel", "noopener noreferrer")
+        .attr("href", "./")
+    );
 }
 
 function Menu() {
@@ -165,6 +164,7 @@ function switchColorScheme() {
     $("body").removeClass("dark");
     $("#mode-icon-img")
       .attr("src", Images.DARK_MODE)
+      .attr("alt", "Light/Dark Mode")
       .css("background-color", "var(--bg-base)");
     Settings.mode = null;
   } else {
@@ -173,6 +173,7 @@ function switchColorScheme() {
     $("body").addClass("dark");
     $("#mode-icon-img")
       .attr("src", Images.LIGHT_MODE)
+      .attr("alt", "Light/Dark Mode")
       .css("background-color", "var(--primary)");
     Settings.mode = "dark";
   }

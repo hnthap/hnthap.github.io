@@ -1,4 +1,4 @@
-"strict";
+"use strict";
 
 /**
  * @typedef {{
@@ -133,10 +133,10 @@ function Summary(itemList, emails, interests) {
 }
 
 function Portrait() {
-  const portrait = $("<img>");
-  portrait.addClass("portrait");
-  portrait.attr("src", Images.PORTRAIT);
-  return portrait;
+  return $("<img>")
+    .addClass("portrait")
+    .attr("src", Images.PORTRAIT)
+    .attr("alt", "Profile Image");
 }
 
 function ProjectList() {
@@ -150,7 +150,7 @@ function ProjectList() {
         $("<a>")
           .addClass("it")
           .text("My Projects")
-          .attr("href", "/projects.html")
+          .attr("href", "./projects.html")
       )
   );
   return span;

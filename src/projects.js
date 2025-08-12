@@ -1,3 +1,5 @@
+"use strict";
+
 const mask = Projects.map(() => true);
 
 (function () {
@@ -10,7 +12,7 @@ const mask = Projects.map(() => true);
       $("<div>")
         .addClass("modal-content")
         .append(
-          $("<img>").attr("id", "modal-image"),
+          $("<img>").attr("id", "modal-image").attr("alt", "Project Image"),
           $("<div>")
             .addClass("modal-row")
             .attr("id", "modal-github-stats")
@@ -23,7 +25,7 @@ const mask = Projects.map(() => true);
                 },
                 {
                   name: "modal-fork-count",
-                  icon: "focus.png",
+                  icon: "fork.png",
                   title: "Fork Count",
                 },
                 {
@@ -39,7 +41,8 @@ const mask = Projects.map(() => true);
                   .append(
                     $("<img>")
                       .addClass("modal-github-stats-icon")
-                      .attr("src", "images/" + icon),
+                      .attr("src", "images/" + icon)
+                      .attr("alt", title),
                     $("<div>")
                       .addClass("modal-github-stats-count")
                       .attr("id", name)
@@ -52,18 +55,18 @@ const mask = Projects.map(() => true);
           $("<div>")
             .addClass("modal-row")
             .append(
-              $("<a>")
-                .attr("id", "modal-slides-url")
-                .html("&nbsp;&nbsp;Slides&nbsp;&nbsp;"),
-              $("<a>")
-                .attr("id", "modal-report-url")
-                .html("&nbsp;&nbsp;Report&nbsp;&nbsp;"),
-              $("<a>")
-                .attr("id", "modal-code-url")
-                .html("&nbsp;&nbsp;Code&nbsp;&nbsp;"),
-              $("<a>")
-                .attr("id", "modal-demo-url")
-                .html("&nbsp;&nbsp;Demo&nbsp;&nbsp;")
+              [
+                { name: "Slides", id: "modal-slides-url" },
+                { name: "Report", id: "modal-report-url" },
+                { name: "Code", id: "modal-code-url" },
+                { name: "Demo", id: "modal-demo-url" },
+              ].map(({ name, id }) =>
+                $("<a>")
+                  .attr("id", id)
+                  .html("&nbsp;&nbsp;" + name + "&nbsp;&nbsp;")
+                  .attr("target", "_blank")
+                  .attr("rel", "noopener noreferrer")
+              )
             ),
           $("<div>").attr("id", "modal-bullets"),
           $("<p>")
@@ -85,7 +88,6 @@ function populateProjectContainer() {
   const otherProjects = masked.filter(
     ({ rating }) => rating !== "featured" && rating !== "good"
   );
-  console.log(featuredProjects.length, otherProjects.length);
   $("#project-container")
     .html("")
     .append(
@@ -100,25 +102,21 @@ function populateProjectContainer() {
  * @returns {JQuery<HTMLElement>}
  */
 function ProjectSmallContainer() {
-  const div = $("<div>")
-    .addClass("project-container")
-    .attr("id", "project-container");
   for (let i = 0; i < mask.length; ++i) {
     mask[i] = true;
   }
-  const featuredProjects = Projects.filter(
-    ({ rating }) => rating === "featured"
-  );
-  const goodProjects = Projects.filter(({ rating }) => rating === "good");
-  const otherProjects = Projects.filter(
-    ({ rating }) => rating !== "featured" && rating !== "good"
-  );
-  div.append(
-    ...[...featuredProjects, ...goodProjects, ...otherProjects].map(
-      ProjectSmallView
-    )
-  );
-  return div;
+  return $("<div>")
+    .addClass("project-container")
+    .attr("id", "project-container")
+    .append(
+      ...[
+        ...Projects.filter(({ rating }) => rating === "featured"),
+        ...Projects.filter(({ rating }) => rating === "good"),
+        ...Projects.filter(
+          ({ rating }) => rating !== "featured" && rating !== "good"
+        ),
+      ].map(ProjectSmallView)
+    );
 }
 
 /**
@@ -128,7 +126,7 @@ function ProjectSmallContainer() {
  */
 function ProjectSmallView(project) {
   const imagePath = project.imageUrl ?? "./images/golden-cube.png";
-  const image = $("<img>").attr("src", imagePath);
+  const image = $("<img>").attr("src", imagePath).attr("alt", "Project Image");
   const text = $("<p>").addClass("project-title").text(project.title);
   const div = $("<div>").addClass("project-small");
   if (project.rating === "featured") {
@@ -171,7 +169,7 @@ function loadGitHubStats(modal, project) {
     project.codeUrl.startsWith("https://github.com/")
   ) {
     const groups =
-      /^https:\/\/github.com\/([a-zA-Z09_-]+)\/([a-zA-Z09_-]+)/.exec(
+      /^https:\/\/github.com\/([a-zA-Z09_\-.,]+)\/([a-zA-Z09_\-.,]+)/.exec(
         project.codeUrl
       );
     if (groups && groups.length >= 3) {
@@ -184,7 +182,7 @@ function loadGitHubStats(modal, project) {
 
 /**
  * @param {JQuery<HTMLElement>} modal
- * @param {string} owner 
+ * @param {string} owner
  * @param {string} repo
  */
 async function loadGitHubStatsFromAPI(modal, owner, repo) {
@@ -210,7 +208,7 @@ async function loadGitHubStatsFromAPI(modal, owner, repo) {
     const fetchedData = await response.json();
     data.github_stats[owner][repo].starCount = fetchedData.stargazers_count;
     data.github_stats[owner][repo].forkCount = fetchedData.forks_count;
-    data.github_stats[owner][repo].watcherCount = fetchedData.watchers_count;
+    data.github_stats[owner][repo].watcherCount = fetchedData.subscribers_count;
   }
   const { starCount, forkCount, watcherCount } = data.github_stats[owner][repo];
   sessionStorage.setItem("hnthap_github_io_session_data", JSON.stringify(data));
@@ -248,11 +246,6 @@ function showModal(project) {
   modal.find("#modal-title").text(project.title);
   modal.find("#modal-time").text(project.time);
 
-  if (project.slidesUrl) {
-    modal.find("#modal-slides-url").attr("href", project.slidesUrl).show();
-  } else {
-    modal.find("#modal-slides-url").hide();
-  }
   if (project.slidesUrl) {
     modal.find("#modal-slides-url").attr("href", project.slidesUrl).show();
   } else {
