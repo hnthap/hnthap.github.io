@@ -355,6 +355,24 @@ const Projects = [
     imageUrl: "./images/barebonesim.png",
     rating: "good",
   },
+  {
+    title: "Primality Test",
+    time: "2022",
+    bullets: [
+      "Developed an efficient primality test web app using modern JavaScript " +
+      "and algorithmic optimization techniques.",
+      "Demonstrated expertise in frontend engineering, UI design, and " +
+      "mathematical problem solving through end-to-end deployment of an " +
+      "interactive number theory tool."
+    ],
+    skills: ["JavaScript/TypeScript"],
+    codeUrl: "https://github.com/hnthap/primality",
+    demoUrl:
+      "https://hnthap.github.io/primality/",
+    demoTitle: "Live Demo",
+    imageUrl: "./images/primality-test.png",
+    rating: "normal",
+  },
 ];
 
 /**
