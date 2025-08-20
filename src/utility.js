@@ -9,7 +9,7 @@ const FULL_NAME = "Huynh Nhan Thap";
 
 const Accounts = {
   GITHUB: "https://github.com/hnthap",
-  LINKED_IN: "https://www.linkedin.com/in/huynh-nhan-t-4ab735337/",
+  LINKED_IN: "https://www.linkedin.com/in/huynh-nhan-thap/",
 };
 
 const Images = {
