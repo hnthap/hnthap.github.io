@@ -15,6 +15,7 @@
  * "Machine Learning" |
  * "Netlify" |
  * "OpenCV" |
+ * "PHP" |
  * "Python" |
  * "PyTorch" |
  * "React" |
@@ -23,7 +24,8 @@
  * "SQLite" |
  * "TensorFlow" |
  * "ThreeJS" |
- * "Vite"
+ * "Vite" |
+ * "WordPress"
  * } SkillName
  *
  * @typedef {{
@@ -43,6 +45,30 @@
 
 /** @type {ProjectItem[]} */
 const Projects = [
+    {
+        title: "WordPress Development Environment with Docker",
+        time: "2025",
+        bullets: [
+            "Built multi-service Docker environment with WordPress, " +
+                "MySQL and phpMyAdmin.",
+            "Wrote custom image that automatically resolves WordPress " +
+                "file permission issues - show ability to identify real-world " +
+                "deployment problems and implement technical solutions.",
+            "Designed loosely-coupled architecture with proper dependency " +
+                "management and created comprehansive technical " +
+                "documentation - demonstrates understanding  of scalable " +
+                "system design.",
+        ],
+        skills: [
+            "Docker",
+            "SQL",
+            "WordPress",
+            "PHP",
+        ],
+        codeUrl: "https://github.com/hnthap/wordpress-docker",
+        imageUrl: "./images/wordpress-docker.png",
+        rating: "normal",
+    },
     {
         title: "Cat or Dog? (Image Classifier Website)",
         time: "2025",
