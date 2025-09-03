@@ -37,9 +37,9 @@
   ];
   const emails = ["huynhnhanthap[at]gmail.com", "21521457[at]gm.uit.edu.vn"];
   const interests = [
-    "deep learning",
-    "natural language processing",
-    "computer vision",
+    "software development",
+    "machine learning",
+    "deployment",
   ];
   /** @type {EducationItem[]} */
   const educationItems = [

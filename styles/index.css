@@ -14,7 +14,7 @@
     }
     & .full-name {
         font-size: var(--medium-font);
-        color: var(--text)
+        color: var(--text);
     }
 }
 
