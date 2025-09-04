@@ -33,7 +33,7 @@ html {
         }
 
         & .project-title {
-            font-size: calc(var(--medium-font) * 0.8);
+            font-size: calc(var(--medium-font) * 0.75);
             width: var(--local-width);
             text-align: center;
         }

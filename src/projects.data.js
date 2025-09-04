@@ -1,6 +1,53 @@
 "use strict";
 
 /**
+
+### **Featured Projects** (Top Tier – 2–3 max)
+
+* **Strong impact & relevance**: Projects that directly demonstrate skills
+needed for your target jobs (e.g., web app if applying for frontend/backend, ML
+project if applying for data/AI roles).
+* **Complexity & depth**: Shows multiple skills (system design, algorithms,
+APIs, databases, UI/UX, deployment).
+* **Real-world alignment**: Solves a practical problem, has a live demo, or is
+used by real users.
+* **Polish**: Clean documentation, professional-looking UI (if applicable),
+well-structured code.
+* **Talking point**: Something you can confidently discuss in detail during
+interviews.
+
+### **Good Projects** (Middle Tier)
+
+* **Solid skill showcase**: Demonstrates understanding of important concepts
+(data structures, web frameworks, cloud, etc.).
+* **Complete but smaller**: A functional project but less complex or polished
+than "featured."
+* **Learning-oriented**: Built mainly to practice a new tech stack or concept
+but still relevant to employers.
+* **Clear presentation**: Decent README, screenshots, maybe hosted demo.
+
+### **Normal Projects** (Baseline / Supporting)
+
+* **Foundational work**: Course assignments, hackathon prototypes, or toy apps
+that taught you something.
+* **Limited scope**: Small scripts, algorithm implementations, or practice
+projects.
+* **Outdated stack or relevance**: Useful for your growth, but not strong
+differentiators for recruiters.
+* **Optional to include**: Only list if you need more volume; otherwise, keep
+them in GitHub but not in the main portfolio.
+
+---
+
+👉 Rule of thumb:
+
+* **2–3 featured**, **3–4 good**, **rest normal (or hidden)**.
+* Quality >>> quantity. Better to have **fewer, polished projects** than a long
+list.
+
+ */
+
+/**
  * @typedef { |
  * "C/C++" |
  * "Data Science" |
@@ -11,13 +58,16 @@
  * "Gradle" |
  * "Image Processing" |
  * "Java" |
+ * "JavaFX" |
  * "JavaScript/TypeScript" |
+ * "jQuery" |
  * "Keras" |
  * "LangChain" |
  * "Machine Learning" |
  * "MySQL" |
  * "Netlify" |
  * "OpenCV" |
+ * "OpenVINO Model Server" |
  * "PHP" |
  * "PostgreSQL" |
  * "Python" |
@@ -31,7 +81,44 @@
  * "Vite" |
  * "WordPress"
  * } SkillName
- *
+ */
+
+/** @type {SkillName[]} */
+const SkillNames = [
+  "C/C++",
+  "Data Science",
+  "Django",
+  "Docker",
+  "Express",
+  "FastAPI",
+  "Gradle",
+  "Image Processing",
+  "Java",
+  "JavaFX",
+  "JavaScript/TypeScript",
+  "jQuery",
+  "Keras",
+  "LangChain",
+  "Machine Learning",
+  "MySQL",
+  "Netlify",
+  "OpenCV",
+  "OpenVINO Model Server",
+  "PHP",
+  "PostgreSQL",
+  "Python",
+  "PyTorch",
+  "React",
+  "React Native",
+  "SQL",
+  "SQLite",
+  "TensorFlow",
+  "ThreeJS",
+  "Vite",
+  "WordPress",
+];
+
+/**
  * @typedef {{
  *  title: string;
  *  time: string;
@@ -90,7 +177,7 @@ const Projects = [
         "documentation - demonstrates understanding  of scalable " +
         "system design.",
     ],
-    skills: ["Docker", "SQL", "WordPress", "PHP"],
+    skills: ["Docker", "SQL", "WordPress", "PHP", "MySQL"],
     codeUrl: "https://github.com/hnthap/wordpress-docker",
     imageUrl: "./images/wordpress-blue.png",
     rating: "normal",
@@ -110,6 +197,7 @@ const Projects = [
       "Express",
       "JavaScript/TypeScript",
       "Machine Learning",
+      "OpenVINO Model Server",
       "PyTorch",
       "React",
       "Vite",
@@ -117,7 +205,7 @@ const Projects = [
     ],
     codeUrl: "https://github.com/hnthap/cat-or-dog",
     imageUrl: "./images/cat-or-dog.png",
-    rating: "good",
+    rating: "featured",
   },
   {
     title: "Lunar Calendar API",
@@ -127,7 +215,7 @@ const Projects = [
       "Implemented the API using Node.js and Express, with TypeScript for type safety and maintainability.",
       "Deployed the API on Netlify, ensuring scalability and reliability for global users.",
     ],
-    skills: ["Express", "JavaScript/TypeScript"],
+    skills: ["Express", "JavaScript/TypeScript", "Netlify", "Docker"],
     codeUrl: "https://github.com/hnthap/lunar-calendar-api",
     demoUrl: "https://hnthap.github.io/lunar-calendar-converter-interface",
     imageUrl: "./images/lunar-calendar.png",
@@ -195,7 +283,7 @@ const Projects = [
     rating: "normal",
   },
   {
-    title: "Graduation Exam Scores Lookup Web App",
+    title: "Graduation Exam Scores Lookup Website",
     time: "Mar 2025",
     bullets: [
       "Developed a full-stack web application using Django, MySQL, and " +
@@ -205,7 +293,7 @@ const Projects = [
       "Containerized the application components using Docker Compose for " +
         "easy deployment and scalability.",
     ],
-    skills: ["Docker", "Django", "MySQL", "JavaScript/TypeScript"],
+    skills: ["Docker", "Django", "MySQL", "JavaScript/TypeScript", "jQuery"],
     codeUrl: "https://github.com/hnthap/g-scores",
     imageUrl: "./images/g-scores.png",
     rating: "good",
@@ -250,21 +338,6 @@ const Projects = [
       "Achieved a 25% improvement in ROUGE-L scores and 23% increase in " +
         "BERTScore Recall on fine-tuned T5 models. " +
         "Deployed a complete chatbot with the trained model.",
-      // "Developed a high-quality news summarization dataset specific to " +
-      //   "Vietnamese.",
-      // "Optimized the filtering process, improving efficiency by 30% and " +
-      //   "enhancing data quality.",
-      // "Trained and deployed benchmark language models on the dataset, " +
-      //   "achieving 20% improvement in key evaluation metrics.",
-      // "Proposed new methods to filter existing news dataset to automatically " +
-      //   "create a high-quality and abstractive news summarization dataset " +
-      //   "(consisting of pairs of news articles and their corresponding " +
-      //   "summaries) for Vietnamese specifically.",
-      // "Trained and deployed existing benchmark language models on the " +
-      //   "created summarization dataset; proved the dataset quality " +
-      //   "through the trained models’ evaluation.",
-      // "Proposed an annotating guideline for parts that require human " +
-      //   "annotation in the data creation pipeline.",
     ],
     skills: ["Data Science", "Machine Learning", "PyTorch", "Python"],
     slidesUrl:
@@ -293,21 +366,6 @@ const Projects = [
       "Engineered and optimized image crawling and annotation workflows, " +
         "resulting in a significant 80% reduction in manual data " +
         "preparation through automation.",
-      // "Developed and deployed an AI model to accurately detect the position" +
-      //   "and type of Vietnamese cakes (e.g., banh chung, banh gio) from images" +
-      //   "with 85% precision.",
-      // "Designed an automatic tool for crawling images from the Internet, " +
-      //   "significantly reducing manual labor and improving data collection " +
-      //   "efficiency by 80%.",
-      // "Proposed and implemented a detailed annotating guideline for labeling " +
-      //   "training images, enhancing the quality of the training data.",
-      // "Trained and deployed an AI model that detects the position and type " +
-      //   "of Vietnamese cakes (e.g., banh chung, banh gio) from images " +
-      //   "quickly and accurately.",
-      // "Designed a tool to crawled images from the Internet automatically; " +
-      //   "helped reducing manual work.",
-      // "Proposed an annotating guideline for labeling the crawled images; " +
-      //   "improved the training data quality.",
     ],
     skills: [
       "Data Science",
@@ -328,10 +386,10 @@ const Projects = [
     demoUrl: "https://huggingface.co/spaces/hnthap/banh-detector",
     demoTitle: "Live Demo",
     imageUrl: "./images/banh-chung.jpg",
-    rating: "good",
+    rating: "featured",
   },
   {
-    title: "Part-of-Speech Tagging for Vietnamese",
+    title: "Part-of-Speech Tagging (Vietnamese)",
     time: "Feb 2024 - Jun 2024",
     bullets: [
       "Trained some Part-of-Speech tagging models on Vietnamese text, " +
@@ -360,9 +418,6 @@ const Projects = [
       "Designed and deployed a browser-based 3D car simulator with HTML, " +
         "CSS and JavaScript (Three.js and React) via Vite, enabling user " +
         "controls and interactive features.",
-      // "Designed and deployed a car simulator running directly on browsers, " +
-      //   "where users can ride a car on a 3D landscape that introduces " +
-      //   "various famous buildings from Paris.",
     ],
     skills: ["Vite", "ThreeJS", "React", "JavaScript/TypeScript"],
     slidesUrl:
@@ -384,12 +439,6 @@ const Projects = [
         "reviews by different aspects such as food and service quality.",
       "Improved classification accuracy by 20% over existing techniques " +
         "through the strategic integration of enhanced input features.",
-      // "Developed an aspect-based sentiment analysis model for restaurant " +
-      //   "reviews in Vietnamese.",
-      // "Implemented advanced natural language processing techniques to " +
-      //   "improve sentiment classification accuracy.",
-      // "Created an AI model that classifies restaurant reviews into " +
-      //   "“positive”, “neutral” or “negative” based on multiple aspects.",
     ],
     skills: ["Data Science", "Machine Learning", "PyTorch", "Python"],
     slidesUrl:
@@ -437,12 +486,8 @@ const Projects = [
         "and components for a fully functional, easy-to-use UI.",
       "Directed the project timeline and resources, identifying and " +
         "implementing key enhancements.",
-      // "Designed a desktop code editor to run the Barebone programming " +
-      //   "language for educational use.",
-      // "Developed an easy-to-use cross-platform application using Java and " +
-      //   "JavaFX.",
     ],
-    skills: ["Gradle", "Java"],
+    skills: ["Gradle", "Java", "JavaFX"],
     slidesUrl:
       "https://docs.google.com/presentation/d/" +
       "1-YqRb4C5tWUJo3MegXoxBurtoQWV5AC3/edit?usp=drive_link",
@@ -471,6 +516,21 @@ const Projects = [
     imageUrl: "./images/primality-test.png",
     rating: "normal",
   },
+  {
+    title: "Personal Portfolio Website",
+    time: "Nov 2021 - Present",
+    bullets: [
+      "Developed a responsive personal website with modular components to showcase education, certificates, and projects.",
+      "Implemented project search/filtering and integrated GitHub API for live repository statistics.",
+      "Added dark mode with persistent user settings using localStorage.",
+    ],
+    skills: ["JavaScript/TypeScript", "jQuery"],
+    codeUrl: "https://github.com/hnthap/hnthap.github.io",
+    demoUrl: "https://hnthap.github.io/",
+    demoTitle: "Live Site",
+    imageUrl: "./images/portfolio.png",
+    rating: "good",
+  },
 ];
 
 /**
@@ -493,16 +553,19 @@ const LowerCasedProjects = Projects.map((project) => {
   return obj;
 });
 
-/** @type {SkillName[]} */
-const ShownSkills = [
-  "Data Science",
-  "Machine Learning",
-  "Docker",
-  "React Native",
-  "React",
-  "Express",
-  "FastAPI",
-  "SQL",
-  // "C/C++",
-  "Java",
-];
+const CountedSkills = new Map(
+  [
+    ...SkillNames.reduce((obj, skill) => {
+      const count = Projects.filter((p) => p.skills.includes(skill)).length;
+      if (count > 0) {
+        obj.set(skill, count);
+      }
+      return obj;
+    }, new Map()).entries(),
+  ].sort((a, b) => {
+    if (b[1] === a[1]) {
+      return a[0].localeCompare(b[0]);
+    }
+    return b[1] - a[1];
+  })
+);

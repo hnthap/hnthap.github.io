@@ -1,6 +1,7 @@
 "use strict";
 
-const mask = Projects.map(() => true);
+const searchMask = Projects.map(() => true);
+const skillMask = Projects.map(() => true);
 
 (function () {
   document.title = `${FULL_NAME}'s Projects`;
@@ -82,7 +83,7 @@ const mask = Projects.map(() => true);
 })();
 
 function populateProjectContainer() {
-  const masked = Projects.filter((_, i) => mask[i]);
+  const masked = Projects.filter((_, i) => searchMask[i] && skillMask[i]);
   const featuredProjects = masked.filter(({ rating }) => rating === "featured");
   const goodProjects = masked.filter(({ rating }) => rating === "good");
   const otherProjects = masked.filter(
@@ -102,8 +103,11 @@ function populateProjectContainer() {
  * @returns {JQuery<HTMLElement>}
  */
 function ProjectSmallContainer() {
-  for (let i = 0; i < mask.length; ++i) {
-    mask[i] = true;
+  for (let i = 0; i < searchMask.length; ++i) {
+    searchMask[i] = true;
+  }
+  for (let i = 0; i < skillMask.length; ++i) {
+    skillMask[i] = true;
   }
   return $("<div>")
     .addClass("project-container")
@@ -283,35 +287,63 @@ function showModal(project) {
 
 function ProjectSearchBar() {
   const inputId = "#project-search-bar-input";
+  const textInput = $("<input>")
+    .addClass("search-bar")
+    .attr("spellcheck", "false")
+    .attr("placeholder", "Enter something...")
+    .attr("id", inputId.slice(1))
+    .attr("type", "text")
+    .on("keyup cut paste", () => {
+      // @ts-ignore
+      const text = $(inputId).val().toLowerCase().split(" ").join(" ");
+      if (text.length === 0) {
+        for (let i = 0; i < searchMask.length; ++i) {
+          searchMask[i] = true;
+        }
+      } else {
+        LowerCasedProjects.forEach((project, index) => {
+          searchMask[index] =
+            project.title.includes(text) ||
+            project.bullets.reduce((state, bullet) => {
+              return state ? state : bullet.includes(text);
+            }, false) ||
+            project.skills.reduce((state, skill) => {
+              return state ? state : skill.includes(text);
+            }, false);
+        });
+      }
+      populateProjectContainer();
+    });
+  const allLabel = "(All Skills)";
+  const filterSelect = $("<select>")
+    .addClass("filter-select")
+    .attr("id", "project-filter-select")
+    .on("change", () => {
+      const value = ($("#project-filter-select").val() ?? "").toString();
+      // @ts-ignore
+      if (value === allLabel || !value || !SkillNames.includes(value)) {
+        for (let i = 0; i < skillMask.length; ++i) {
+          skillMask[i] = true;
+        }
+      } else {
+        Projects.forEach((project, index) => {
+          // @ts-ignore
+          skillMask[index] = (project.skills ?? []).includes(value);
+        });
+      }
+      populateProjectContainer();
+    })
+    .append(
+      [[allLabel, null], ...CountedSkills.entries()].map((item) =>
+        $("<option>")
+          .addClass("filter-option")
+          .attr("value", item[0])
+          .text(
+            typeof item[1] === "number" ? `${item[0]} (${item[1]})` : item[0]
+          )
+      )
+    );
   return $("<div>")
     .addClass("search-bar-container")
-    .append(
-      $("<input>")
-        .addClass("search-bar")
-        .attr("spellcheck", "false")
-        .attr("placeholder", "Enter something...")
-        .attr("id", inputId.slice(1))
-        .attr("type", "text")
-        .on("keyup cut paste", () => {
-          // @ts-ignore
-          const text = $(inputId).val().toLowerCase().split(" ").join(" ");
-          if (text.length === 0) {
-            for (let i = 0; i < mask.length; ++i) {
-              mask[i] = true;
-            }
-          } else {
-            LowerCasedProjects.forEach((project, index) => {
-              mask[index] =
-                project.title.includes(text) ||
-                project.bullets.reduce((state, bullet) => {
-                  return state ? state : bullet.includes(text);
-                }, false) ||
-                project.skills.reduce((state, skill) => {
-                  return state ? state : skill.includes(text);
-                }, false);
-            });
-          }
-          populateProjectContainer();
-        })
-    );
+    .append(textInput, filterSelect);
 }
