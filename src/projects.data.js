@@ -49,73 +49,114 @@ list.
 
 /**
  * @typedef { |
+ * "Android Development" |
  * "C/C++" |
+ * "Chatbot Development" |
+ * "Computer Vision" |
+ * "Data Annotation" |
  * "Data Science" |
+ * "Deep Learning" |
  * "Django" |
  * "Docker" |
  * "Express" |
+ * "FAISS" |
  * "FastAPI" |
+ * "Google AI SDK" |
  * "Gradle" |
- * "Image Processing" |
+ * "HTML/CSS" |
+ * "Hugging Face Transformers" |
+ * "Image Processing (OpenCV, Sharp)" |
  * "Java" |
  * "JavaFX" |
  * "JavaScript/TypeScript" |
+ * "Jupyter Notebook" |
  * "jQuery" |
  * "Keras" |
  * "LangChain" |
  * "Machine Learning" |
- * "MySQL" |
+ * "Natural Language Processing" |
  * "Netlify" |
- * "OpenCV" |
+ * "Node.js" |
  * "OpenVINO Model Server" |
- * "PHP" |
- * "PostgreSQL" |
+ * "Data Processing (Pandas, Polars)" |
  * "Python" |
  * "PyTorch" |
  * "React" |
  * "React Native" |
- * "SQL" |
- * "SQLite" |
+ * "Responsive Design" |
+ * "Roboflow" |
+ * "SQL (MySQL, PostgreSQL, SQLite)" |
+ * "Scikit-learn" |
  * "TensorFlow" |
- * "ThreeJS" |
+ * "Three.js" |
  * "Vite" |
+ * "Web Scraping" |
  * "WordPress"
  * } SkillName
  */
 
 /** @type {SkillName[]} */
 const SkillNames = [
+  // Core Programming Languages
+  "Python",
+  "JavaScript/TypeScript",
+  "Java",
   "C/C++",
-  "Data Science",
-  "Django",
-  "Docker",
+
+  // Machine Learning & AI
+  "Machine Learning",
+  "Deep Learning",
+  "TensorFlow",
+  "PyTorch",
+  "Keras",
+  "Scikit-learn",
+  "Hugging Face Transformers",
+
+  // Specialized AI Applications
+  "Natural Language Processing",
+  "Computer Vision",
+  "Image Processing (OpenCV, Sharp)",
+  "Chatbot Development",
+
+  // AI Tools & Platforms
+  "FAISS",
+  "Google AI SDK",
+  "LangChain",
+  "OpenVINO Model Server",
+  "Roboflow",
+
+  // Backend Development
+  "Node.js",
   "Express",
   "FastAPI",
-  "Gradle",
-  "Image Processing",
-  "Java",
-  "JavaFX",
-  "JavaScript/TypeScript",
-  "jQuery",
-  "Keras",
-  "LangChain",
-  "Machine Learning",
-  "MySQL",
-  "Netlify",
-  "OpenCV",
-  "OpenVINO Model Server",
-  "PHP",
-  "PostgreSQL",
-  "Python",
-  "PyTorch",
+  "Django",
+
+  // Frontend Development
+  "HTML/CSS",
+  "Responsive Design",
   "React",
-  "React Native",
-  "SQL",
-  "SQLite",
-  "TensorFlow",
-  "ThreeJS",
+  "jQuery",
+  "Three.js",
   "Vite",
+
+  // Mobile Development
+  "React Native",
+  "Android Development",
+  "JavaFX",
+
+  // Database & Data Processing
+  "SQL (MySQL, PostgreSQL, SQLite)",
+  "Data Processing (Pandas, Polars)",
+  "Data Science",
+  "Data Annotation",
+
+  // Development Tools & Deployment
+  "Jupyter Notebook",
+  "Docker",
+  "Gradle",
+  "Netlify",
   "WordPress",
+  "Web Scraping",
 ];
 
 /**
@@ -143,7 +184,7 @@ const Projects = [
       "Developed a user-friendly web application that converts images to Base64 strings using HTML, CSS, and JavaScript, ensuring privacy by processing images locally in the browser.",
       "Implemented drag-and-drop functionality, responsive design, and real-time previews for enhanced user experience.",
     ],
-    skills: ["JavaScript/TypeScript"],
+    skills: ["JavaScript/TypeScript", "HTML/CSS", "Responsive Design"],
     codeUrl: "https://github.com/hnthap/image-to-base64",
     demoUrl: "https://hnthap.github.io/image-to-base64/",
     demoTitle: "Live Demo",
@@ -158,7 +199,19 @@ const Projects = [
       "Implemented an efficient data ingestion pipeline with content deduplication to saving time and computational resources.",
       "Containerized the PostgreSQL database with pgvector extension using Docker Compose for easy setup and scalability.",
     ],
-    skills: ["Python", "Docker", "PostgreSQL", "PyTorch", "LangChain"],
+    skills: [
+      "Python",
+      "Docker",
+      "SQL (MySQL, PostgreSQL, SQLite)",
+      "PyTorch",
+      "LangChain",
+      "Google AI SDK",
+      "Machine Learning",
+      "Hugging Face Transformers",
+      "Chatbot Development",
+      "Deep Learning",
+      "Natural Language Processing",
+    ],
     codeUrl: "https://github.com/hnthap/docu-chat",
     imageUrl: "./images/docuchat.png",
     rating: "good",
@@ -177,14 +230,14 @@ const Projects = [
         "documentation - demonstrates understanding  of scalable " +
         "system design.",
     ],
-    skills: ["Docker", "SQL", "WordPress", "PHP", "MySQL"],
+    skills: ["Docker", "SQL (MySQL, PostgreSQL, SQLite)", "WordPress"],
     codeUrl: "https://github.com/hnthap/wordpress-docker",
     imageUrl: "./images/wordpress-blue.png",
     rating: "normal",
   },
   {
     title: "Cat or Dog? (Image Classifier Website)",
-    time: "Aug 2025",
+    time: "Jul 2025 - Aug 2025",
     bullets: [
       "Engineered a full-stack web application with React, Node.js, " +
         "and Docker, delivering seamless image classification functionality.",
@@ -201,7 +254,12 @@ const Projects = [
       "PyTorch",
       "React",
       "Vite",
-      "Image Processing",
+      "Image Processing (OpenCV, Sharp)",
+      "Node.js",
+      "Computer Vision",
+      "Deep Learning",
+      "Jupyter Notebook",
+      "Data Processing (Pandas, Polars)",
     ],
     codeUrl: "https://github.com/hnthap/cat-or-dog",
     imageUrl: "./images/cat-or-dog.png",
@@ -215,7 +273,14 @@ const Projects = [
       "Implemented the API using Node.js and Express, with TypeScript for type safety and maintainability.",
       "Deployed the API on Netlify, ensuring scalability and reliability for global users.",
     ],
-    skills: ["Express", "JavaScript/TypeScript", "Netlify", "Docker"],
+    skills: [
+      "Express",
+      "JavaScript/TypeScript",
+      "Netlify",
+      "Docker",
+      "Node.js",
+      "HTML/CSS",
+    ],
     codeUrl: "https://github.com/hnthap/lunar-calendar-api",
     demoUrl: "https://hnthap.github.io/lunar-calendar-converter-interface",
     imageUrl: "./images/lunar-calendar.png",
@@ -229,14 +294,15 @@ const Projects = [
       "Implemented a customer-focused commercial mobile app specialized in " +
         "furniture products.",
       "Made the app cross-platform by implementing it using React Native " +
-        "and server–client architecture.",
+        "and server-client architecture.",
     ],
     skills: [
       "React Native",
       "Express",
-      "SQL",
+      "SQL (MySQL, PostgreSQL, SQLite)",
       "JavaScript/TypeScript",
-      "SQLite",
+      "Node.js",
+      "Android Development",
     ],
     slidesUrl:
       "https://docs.google.com/presentation/d/" +
@@ -264,12 +330,19 @@ const Projects = [
       "Machine Learning",
       "PyTorch",
       "Express",
+      "Node.js",
       "FastAPI",
-      "OpenCV",
-      "Image Processing",
+      "Image Processing (OpenCV, Sharp)",
       "Python",
       "JavaScript/TypeScript",
       "React",
+      "Hugging Face Transformers",
+      "Computer Vision",
+      "Data Annotation",
+      "Deep Learning",
+      "Jupyter Notebook",
+      "Natural Language Processing",
+      "Data Processing (Pandas, Polars)",
     ],
     slidesUrl:
       "https://drive.google.com/file/d/1I7TDQ73osCg6QX-hnpNC-Pq2x_eHn2fs" +
@@ -279,6 +352,8 @@ const Projects = [
       "/view?usp=drive_link",
     codeUrl:
       "https://github.com/hnthap/invoice_extraction_webapp/blob/main/HOW.md",
+    demoTitle: "Demo Video",
+    demoUrl: "https://youtu.be/bJuKjnQJpw0",
     imageUrl: "./images/invoice.png",
     rating: "normal",
   },
@@ -293,8 +368,19 @@ const Projects = [
       "Containerized the application components using Docker Compose for " +
         "easy deployment and scalability.",
     ],
-    skills: ["Docker", "Django", "MySQL", "JavaScript/TypeScript", "jQuery"],
+    skills: [
+      "Docker",
+      "Django",
+      "Python",
+      "JavaScript/TypeScript",
+      "jQuery",
+      "SQL (MySQL, PostgreSQL, SQLite)",
+      "HTML/CSS",
+      "Data Processing (Pandas, Polars)",
+    ],
     codeUrl: "https://github.com/hnthap/g-scores",
+    demoTitle: "Demo Video",
+    demoUrl: "https://youtu.be/C-cNHqDPkus",
     imageUrl: "./images/g-scores.png",
     rating: "good",
   },
@@ -310,9 +396,12 @@ const Projects = [
     skills: [
       "Machine Learning",
       "PyTorch",
-      "OpenCV",
-      "Image Processing",
+      "Image Processing (OpenCV, Sharp)",
       "Python",
+      "Computer Vision",
+      "Deep Learning",
+      "Jupyter Notebook",
+      "Natural Language Processing",
     ],
     slidesUrl:
       "https://docs.google.com/presentation/d/1P3X8SyoZfiytYj8HwVwnjtI3T-AKdH95",
@@ -331,7 +420,7 @@ const Projects = [
     bullets: [
       "Created a Vietnamese news summarization dataset from 100,000+ " +
         "unfiltered news articles using rigorous automated quality " +
-        "checks that resulted in 1,800 high-quality article–summary " +
+        "checks that resulted in 1,800 high-quality article-summary " +
         "pairs, which were evaluated by fine-tuning Deep Learning " +
         "models. Researched existing automated summarization methods " +
         "for Vietnamese.",
@@ -339,7 +428,20 @@ const Projects = [
         "BERTScore Recall on fine-tuned T5 models. " +
         "Deployed a complete chatbot with the trained model.",
     ],
-    skills: ["Data Science", "Machine Learning", "PyTorch", "Python"],
+    skills: [
+      "Data Science",
+      "Machine Learning",
+      "PyTorch",
+      "Python",
+      "Hugging Face Transformers",
+      "Chatbot Development",
+      "Data Annotation",
+      "Deep Learning",
+      "FAISS",
+      "Jupyter Notebook",
+      "Natural Language Processing",
+      "Data Processing (Pandas, Polars)",
+    ],
     slidesUrl:
       "https://drive.google.com/file/d/16hb5M3BwaEw5d-DjmXmDH1uEWlX3QCqT/" +
       "view?usp=drive_link",
@@ -371,9 +473,13 @@ const Projects = [
       "Data Science",
       "Machine Learning",
       "PyTorch",
-      "OpenCV",
-      "Image Processing",
+      "Image Processing (OpenCV, Sharp)",
       "Python",
+      "Roboflow",
+      "Computer Vision",
+      "Data Annotation",
+      "Deep Learning",
+      "Jupyter Notebook",
     ],
     slidesUrl:
       "https://drive.google.com/file/d/1-5jURgTwwV66E3Zua72qqzA45jGtItxL/" +
@@ -381,8 +487,7 @@ const Projects = [
     reportUrl:
       "https://drive.google.com/file/d/1-0SDqFiH6n_nqQSmKLa820_a17C3AnBJ/" +
       "view?usp=sharing",
-    codeUrl:
-      "https://www.kaggle.com/code/huynhnhanthap/banh-detection-with-yolo",
+    codeUrl: "https://huggingface.co/spaces/hnthap/banh-detector/blob/main",
     demoUrl: "https://huggingface.co/spaces/hnthap/banh-detector",
     demoTitle: "Live Demo",
     imageUrl: "./images/banh-chung.jpg",
@@ -395,7 +500,14 @@ const Projects = [
       "Trained some Part-of-Speech tagging models on Vietnamese text, " +
         "involving some pre-processing techniques specifically for Vietnamese.",
     ],
-    skills: ["Data Science", "Machine Learning", "Python"],
+    skills: [
+      "Data Science",
+      "Machine Learning",
+      "Python",
+      "Jupyter Notebook",
+      "Natural Language Processing",
+      "Data Processing (Pandas, Polars)",
+    ],
     slidesUrl:
       "https://drive.google.com/file/d/1TBT_A6GWrbcLw_mAWxuF0Y6Myps2j8X1/" +
       "view?usp=sharing",
@@ -419,7 +531,14 @@ const Projects = [
         "CSS and JavaScript (Three.js and React) via Vite, enabling user " +
         "controls and interactive features.",
     ],
-    skills: ["Vite", "ThreeJS", "React", "JavaScript/TypeScript"],
+    skills: [
+      "Vite",
+      "Three.js",
+      "React",
+      "JavaScript/TypeScript",
+      "HTML/CSS",
+      "Node.js",
+    ],
     slidesUrl:
       "https://drive.google.com/file/d/14KZkozAyX3mRFBQ9f_wKTnI6Em2HSJBr/" +
       "view?usp=sharing",
@@ -440,7 +559,18 @@ const Projects = [
       "Improved classification accuracy by 20% over existing techniques " +
         "through the strategic integration of enhanced input features.",
     ],
-    skills: ["Data Science", "Machine Learning", "PyTorch", "Python"],
+    skills: [
+      "Data Science",
+      "Machine Learning",
+      "PyTorch",
+      "Python",
+      "Data Annotation",
+      "Deep Learning",
+      "Hugging Face Transformers",
+      "Jupyter Notebook",
+      "Natural Language Processing",
+      "Data Processing (Pandas, Polars)",
+    ],
     slidesUrl:
       "https://docs.google.com/presentation/d/" +
       "1-B0lUp_bwJfTAGg683bCA0WwZpu8AOZc",
@@ -460,9 +590,10 @@ const Projects = [
     skills: [
       "Machine Learning",
       "PyTorch",
-      "OpenCV",
-      "Image Processing",
+      "Image Processing (OpenCV, Sharp)",
       "Python",
+      "Computer Vision",
+      "Jupyter Notebook",
     ],
     slidesUrl:
       "https://drive.google.com/file/d/1-5rqSBSeOo3K-jC7c_PgyeoHJN81aI-2/" +
@@ -509,7 +640,7 @@ const Projects = [
         "mathematical problem solving through end-to-end deployment of an " +
         "interactive number theory tool.",
     ],
-    skills: ["JavaScript/TypeScript"],
+    skills: ["JavaScript/TypeScript", "HTML/CSS"],
     codeUrl: "https://github.com/hnthap/primality",
     demoUrl: "https://hnthap.github.io/primality/",
     demoTitle: "Live Demo",
@@ -524,7 +655,12 @@ const Projects = [
       "Implemented project search/filtering and integrated GitHub API for live repository statistics.",
       "Added dark mode with persistent user settings using localStorage.",
     ],
-    skills: ["JavaScript/TypeScript", "jQuery"],
+    skills: [
+      "JavaScript/TypeScript",
+      "jQuery",
+      "HTML/CSS",
+      "Responsive Design",
+    ],
     codeUrl: "https://github.com/hnthap/hnthap.github.io",
     demoUrl: "https://hnthap.github.io/",
     demoTitle: "Live Site",

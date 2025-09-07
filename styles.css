@@ -365,3 +365,29 @@ p {
         font-size: var(--medium-font);
     }
 }
+
+.skill-tag {
+    --padding-horizontal: 8px;
+    --padding-vertical: 4px;
+    --margin: 4px;
+    display: inline-block;
+    border: var(--border);
+    border-radius: 12px;
+    padding-top: var(--padding-vertical);
+    padding-bottom: var(--padding-vertical);
+    padding-left: var(--padding-horizontal);
+    padding-right: var(--padding-horizontal);
+    margin-top: var(--margin);
+    margin-left: var(--margin);
+    margin-right: var(--margin);
+    font-size: calc(var(--small-font) * 0.8);
+    font-family: var(--sans-serif);
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.skill-tag:hover {
+    cursor: default;
+    background-color: var(--primary);
+    border: 1px solid var(--bg-base);
+}

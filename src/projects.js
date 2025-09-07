@@ -280,9 +280,54 @@ function showModal(project) {
     .find("#modal-bullets")
     .text("")
     .append(project.bullets.map((bullet) => $("<p>").append(bullet)));
-  modal
-    .find("#modal-skills")
-    .text(project.skills ? project.skills.join(", ") : "N/A");
+
+  if (project.skills) {
+    modal
+      .find("#modal-skills")
+      .empty()
+      .show()
+      .append(
+        orderProjectSkills(project.skills).map((skill) =>
+          $("<span>")
+            .addClass("skill-tag")
+            .text(skill)
+            .on("click", (selector) => {
+              const value = skill;
+              // @ts-ignore
+              if (!value || !SkillNames.includes(value)) {
+                for (let i = 0; i < skillMask.length; ++i) {
+                  skillMask[i] = true;
+                }
+              } else {
+                Projects.forEach((project, index) => {
+                  // @ts-ignore
+                  skillMask[index] = (project.skills ?? []).includes(value);
+                });
+              }
+              $("#project-filter-select").val(value);
+              populateProjectContainer();
+              hideModal();
+            })
+        )
+      );
+  } else {
+    modal.find("#modal-skills").hide();
+  }
+}
+
+/**
+ * 
+ * @param {SkillName[]} skills 
+ */
+function orderProjectSkills(skills) {
+  const mask = SkillNames.map(() => false);
+  skills.forEach((skill) => {
+    const index = SkillNames.indexOf(skill);
+    if (index >= 0) {
+      mask[index] = true;
+    }
+  });
+  return SkillNames.filter((_, i) => mask[i]);
 }
 
 function ProjectSearchBar() {
@@ -295,21 +340,20 @@ function ProjectSearchBar() {
     .attr("type", "text")
     .on("keyup cut paste", () => {
       // @ts-ignore
-      const text = $(inputId).val().toLowerCase().split(" ").join(" ");
+      const text = $(inputId)
+        .val() // @ts-ignore
+        .toLowerCase()
+        .split(/\s+/) // @ts-ignore
+        .filter((term) => term.length > 0)
+        .join(" ");
       if (text.length === 0) {
-        for (let i = 0; i < searchMask.length; ++i) {
-          searchMask[i] = true;
-        }
+        searchMask.fill(true);
       } else {
         LowerCasedProjects.forEach((project, index) => {
           searchMask[index] =
             project.title.includes(text) ||
-            project.bullets.reduce((state, bullet) => {
-              return state ? state : bullet.includes(text);
-            }, false) ||
-            project.skills.reduce((state, skill) => {
-              return state ? state : skill.includes(text);
-            }, false);
+            (project.bullets ?? []).some((bullet) => bullet.includes(text)) ||
+            (project.skills ?? []).some((skill) => skill.includes(text));
         });
       }
       populateProjectContainer();
@@ -322,9 +366,7 @@ function ProjectSearchBar() {
       const value = ($("#project-filter-select").val() ?? "").toString();
       // @ts-ignore
       if (value === allLabel || !value || !SkillNames.includes(value)) {
-        for (let i = 0; i < skillMask.length; ++i) {
-          skillMask[i] = true;
-        }
+        skillMask.fill(true);
       } else {
         Projects.forEach((project, index) => {
           // @ts-ignore
