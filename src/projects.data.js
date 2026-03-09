@@ -178,20 +178,6 @@ const SkillNames = [
 /** @type {ProjectItem[]} */
 const Projects = [
   {
-    title: "Image to Base64 Converter",
-    time: "Sep 2025",
-    bullets: [
-      "Developed a user-friendly web application that converts images to Base64 strings using HTML, CSS, and JavaScript, ensuring privacy by processing images locally in the browser.",
-      "Implemented drag-and-drop functionality, responsive design, and real-time previews for enhanced user experience.",
-    ],
-    skills: ["JavaScript/TypeScript", "HTML/CSS", "Responsive Design"],
-    codeUrl: "https://github.com/hnthap/image-to-base64",
-    demoUrl: "https://hnthap.github.io/image-to-base64/",
-    demoTitle: "Live Demo",
-    imageUrl: "./images/image-to-base64.png",
-    rating: "normal",
-  },
-  {
     title: "DocuChat: Modular RAG System with LangChain and PGVector",
     time: "Jun 2025 - Aug 2025",
     bullets: [
@@ -217,33 +203,11 @@ const Projects = [
     rating: "good",
   },
   {
-    title: "WordPress Development Environment with Docker",
-    time: "Aug 2025",
-    bullets: [
-      "Built multi-service Docker environment with WordPress, " +
-        "MySQL and phpMyAdmin.",
-      "Wrote custom image that automatically resolves WordPress " +
-        "file permission issues - show ability to identify real-world " +
-        "deployment problems and implement technical solutions.",
-      "Designed loosely-coupled architecture with proper dependency " +
-        "management and created comprehansive technical " +
-        "documentation - demonstrates understanding  of scalable " +
-        "system design.",
-    ],
-    skills: ["Docker", "SQL (MySQL, PostgreSQL, SQLite)", "WordPress"],
-    codeUrl: "https://github.com/hnthap/wordpress-docker",
-    imageUrl: "./images/wordpress-blue.png",
-    rating: "normal",
-  },
-  {
     title: "Cat or Dog? (Image Classifier Website)",
     time: "Jul 2025 - Aug 2025",
     bullets: [
-      "Engineered a full-stack web application with React, Node.js, " +
-        "and Docker, delivering seamless image classification functionality.",
-      "Designed, trained, and deployed a custom machine learning model " +
-        "using OpenVINO Model Server, achieving real-time inference with " +
-        "optimized preprocessing pipelines.",
+      "Trained and deployed a custom CV classifier using OpenVINO Model Server, achieving real-time inference in a full-stack React/Node.js application.",
+      "Demonstrated end-to-end ML deployment from Jupyter to production.",
     ],
     skills: [
       "Docker",
@@ -286,33 +250,6 @@ const Projects = [
     imageUrl: "./images/lunar-calendar.png",
     demoTitle: "Live Demo",
     rating: "good",
-  },
-  {
-    title: "Furniture Commercial App",
-    time: "Sep 2024 - Dec 2024",
-    bullets: [
-      "Implemented a customer-focused commercial mobile app specialized in " +
-        "furniture products.",
-      "Made the app cross-platform by implementing it using React Native " +
-        "and server-client architecture.",
-    ],
-    skills: [
-      "React Native",
-      "Express",
-      "SQL (MySQL, PostgreSQL, SQLite)",
-      "JavaScript/TypeScript",
-      "Node.js",
-      "Android Development",
-    ],
-    slidesUrl:
-      "https://docs.google.com/presentation/d/" +
-      "1sAqUDdmubmH0FZT7Eq6QeORNJZPQ55Pa",
-    reportUrl:
-      "https://drive.google.com/file/d/" +
-      "1oORJHgGCogJYi_fdawhnqS6RGpzm25Ao/view?usp=sharing",
-    codeUrl: "https://github.com/hnthap/furniture_selling_app",
-    imageUrl: "./images/furniture-app.png",
-    rating: "normal",
   },
   {
     title: "Vietnamese Invoice Information Extraction",
@@ -385,12 +322,12 @@ const Projects = [
     rating: "good",
   },
   {
-    title: "Sign Language Video-to-Text Translation",
+    title: "Sign Language Video-to-Text Translation Research",
     time: "Sep 2024 - Dec 2024",
     bullets: [
       "Implemented and trained an AI model that translates word-level sign " +
         "language video to text.",
-      "Proposed a method to show the effectiveness of Attention mechanism in " +
+      "Proposed a method to testify the Attention mechanism in " +
         "Sign Language Recognition.",
     ],
     skills: [
@@ -461,13 +398,13 @@ const Projects = [
     title: "Automated Vietnamese Cake Recognition",
     time: "Feb 2024 - Jun 2024",
     bullets: [
+      "Engineered and optimized image crawling and annotation workflows, " +
+        "resulting in a significant 80% reduction in manual data " +
+        "preparation through automation.",
       "Fine-tuned and deployed a Deep Learning Computer Vision system " +
         "using YOLO architecture, achieving 85% precision in " +
         "classifying Vietnamese traditional cakes from diverse image " +
         "inputs.",
-      "Engineered and optimized image crawling and annotation workflows, " +
-        "resulting in a significant 80% reduction in manual data " +
-        "preparation through automation.",
     ],
     skills: [
       "Data Science",
@@ -492,33 +429,6 @@ const Projects = [
     demoTitle: "Live Demo",
     imageUrl: "./images/banh-chung.jpg",
     rating: "featured",
-  },
-  {
-    title: "Part-of-Speech Tagging (Vietnamese)",
-    time: "Feb 2024 - Jun 2024",
-    bullets: [
-      "Trained some Part-of-Speech tagging models on Vietnamese text, " +
-        "involving some pre-processing techniques specifically for Vietnamese.",
-    ],
-    skills: [
-      "Data Science",
-      "Machine Learning",
-      "Python",
-      "Jupyter Notebook",
-      "Natural Language Processing",
-      "Data Processing (Pandas, Polars)",
-    ],
-    slidesUrl:
-      "https://drive.google.com/file/d/1TBT_A6GWrbcLw_mAWxuF0Y6Myps2j8X1/" +
-      "view?usp=sharing",
-    reportUrl:
-      "https://drive.google.com/file/d/1tcC4gq5ktM52iwwZcQd-KkGB4hVcpEQ-/" +
-      "view?usp=sharing",
-    codeUrl:
-      "https://drive.google.com/drive/folders/" +
-      "1dm4MOiApQpBSxboqekLIUiBqmIMf8r_v?usp=sharing",
-    imageUrl: "./images/gia-dinh-bao.jpg",
-    rating: "normal",
   },
   {
     title: "Car Simulator",
@@ -581,33 +491,6 @@ const Projects = [
     rating: "normal",
   },
   {
-    title: "Image Restoration Model",
-    time: "Sep 2023 - Dec 2023",
-    bullets: [
-      "Implemented an image restoration model based on learning " +
-        "distortion invariant representation from a causality perspective.",
-    ],
-    skills: [
-      "Machine Learning",
-      "PyTorch",
-      "Image Processing (OpenCV, Sharp)",
-      "Python",
-      "Computer Vision",
-      "Jupyter Notebook",
-    ],
-    slidesUrl:
-      "https://drive.google.com/file/d/1-5rqSBSeOo3K-jC7c_PgyeoHJN81aI-2/" +
-      "view?usp=sharing",
-    reportUrl:
-      "https://drive.google.com/file/d/1-ABMXjtI8rT7DRKgJfFt3lOkeKOW6teJ/" +
-      "view?usp=sharing",
-    codeUrl:
-      "https://drive.google.com/drive/folders/" +
-      "1uWM8kABuaLsFAV2Cq2pYAaEDAiNQBBmC?usp=sharing",
-    imageUrl: "./images/distortion.jpg",
-    rating: "normal",
-  },
-  {
     title: "Barebonesim: Educational Barebone Compiler",
     time: "Feb 2023 - Jun 2023",
     bullets: [
@@ -631,23 +514,6 @@ const Projects = [
     rating: "normal",
   },
   {
-    title: "Primality Test",
-    time: "2022",
-    bullets: [
-      "Developed an efficient primality test web app using modern JavaScript " +
-        "and algorithmic optimization techniques.",
-      "Demonstrated expertise in frontend engineering, UI design, and " +
-        "mathematical problem solving through end-to-end deployment of an " +
-        "interactive number theory tool.",
-    ],
-    skills: ["JavaScript/TypeScript", "HTML/CSS"],
-    codeUrl: "https://github.com/hnthap/primality",
-    demoUrl: "https://hnthap.github.io/primality/",
-    demoTitle: "Live Demo",
-    imageUrl: "./images/primality-test.png",
-    rating: "normal",
-  },
-  {
     title: "Personal Portfolio Website",
     time: "Nov 2021 - Present",
     bullets: [
@@ -665,7 +531,7 @@ const Projects = [
     demoUrl: "https://hnthap.github.io/",
     demoTitle: "Live Site",
     imageUrl: "./images/portfolio.png",
-    rating: "good",
+    rating: "normal",
   },
 ];
 

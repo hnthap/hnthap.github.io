@@ -3,8 +3,8 @@
 /**
  * @typedef {{
  *  title: string;
- *  organization: string;
- *  organizationUrl: string;
+ *  organization: string | null;
+ *  organizationUrl: string | null;
  * }} SummaryItem
  *
  * @typedef {{
@@ -28,18 +28,16 @@
   /** @type {SummaryItem[]} */
   const summaryItems = [
     {
-      title: "Fresh Computer Science Graduate",
-      organization:
-        "University of Information Technology, " +
-        "Vietnam National University - HCMC",
-      organizationUrl: "https://en.uit.edu.vn/",
+      title: "Full-Stack / AI Developer",
+      organization: null,
+      organizationUrl: null,
     },
   ];
-  const emails = ["huynhnhanthap[at]gmail.com", "21521457[at]gm.uit.edu.vn"];
+  const emails = ["huynhnhanthap[at]gmail.com"];
   const interests = [
-    "software development",
-    "machine learning",
-    "deployment",
+    "AI-powered products",
+    "LLM application",
+    "Vietnamese NLP",
   ];
   /** @type {EducationItem[]} */
   const educationItems = [
@@ -47,7 +45,7 @@
       school: "University of Information Technology, VNU-HCM",
       location: "Vietnam",
       degree: "Bachelor of Science in Computer Science",
-      graduationDate: "Mar 2025",
+      graduationDate: "2025",
       graduated: true,
     },
   ];
@@ -58,24 +56,23 @@
       subtitles: ["Applications of AI for Anomaly Detection"],
       urls: ["https://learn.nvidia.com/certificates?id=vLgidM8gQNKIcff_r83tCw"],
       organization: "NVIDIA",
-      time: "Nov 2024",
+      time: "2024",
     },
-    // {
-    //   title: "Google Career Certificate",
-    //   subtitles: ["Google AI Essentials"],
-    //   urls: [
-    //     "https://www.coursera.org/account/accomplishments/verify/" +
-    //       "RIEO4HGVK5C4",
-    //   ],
-    //   organization: "Google",
-    //   time: "Sep 2024",
-    // },
+    {
+      title: "Google Career Certificate",
+      subtitles: ["Google AI Essentials"],
+      urls: [
+        "https://www.coursera.org/account/accomplishments/verify/RIEO4HGVK5C4",
+      ],
+      organization: "Google",
+      time: "2024",
+    },
     {
       title: "Test of English for International Communication (TOEIC)",
       subtitles: ["Listening - Reading:&nbsp;900/990"],
       urls: [],
       organization: "ETS",
-      time: "Mar 2024",
+      time: "2024",
     },
   ];
 
@@ -114,7 +111,11 @@ function Summary(itemList, emails, interests) {
       $("<p>").append(
         $("<strong>").text(item.title),
         $("<br>"),
-        $("<a>").text(item.organization).attr("href", item.organizationUrl)
+        item.organization
+          ? $("<a>").text(item.organization).attr(
+            "href", item.organizationUrl ?? "/"
+          )
+          : ""
       )
     ),
     $("<p>").append(
