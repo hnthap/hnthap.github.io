@@ -51,11 +51,13 @@ list.
  * @typedef { |
  * "Android Development" |
  * "C/C++" |
+ * "CI/CD" |
  * "Chatbot Development" |
  * "Computer Vision" |
  * "Data Annotation" |
  * "Data Science" |
  * "Deep Learning" |
+ * "Desktop Development" |
  * "Django" |
  * "Docker" |
  * "Express" |
@@ -157,6 +159,10 @@ const SkillNames = [
   "Netlify",
   "WordPress",
   "Web Scraping",
+
+  // Miscellaneous
+  "CI/CD",
+  "Desktop Development",
 ];
 
 /**
@@ -181,9 +187,12 @@ const Projects = [
     title: "DocuChat: Modular RAG System with LangChain and PGVector",
     time: "Jun 2025 - Aug 2025",
     bullets: [
-      "Built a complete Retrieval-Augmented Generation (RAG) system using LangChain and PGVector, enabling question-answering over custom documents with both CLI and web interfaces.",
-      "Implemented an efficient data ingestion pipeline with content deduplication to saving time and computational resources.",
-      "Containerized the PostgreSQL database with pgvector extension using Docker Compose for easy setup and scalability.",
+      "Built a RAG system for question-answering over private documents, " +
+      "with retrieval and generation coordinated by a LangGraph state machine.",
+      "Made ingestion idempotent with SHA1 hashing, so re-indexing skips " +
+      "documents that have not changed.",
+      "Instructed the model to ignore prompt injection in retrieved context, " +
+      "and shipped a CLI and Gradio web app over containerized pgvector.",
     ],
     skills: [
       "Python",
@@ -197,16 +206,18 @@ const Projects = [
       "Chatbot Development",
       "Deep Learning",
       "Natural Language Processing",
+      "CI/CD",
     ],
     codeUrl: "https://github.com/hnthap/docu-chat",
     imageUrl: "./images/docuchat.png",
-    rating: "good",
+    rating: "featured",
   },
   {
     title: "Cat or Dog? (Image Classifier Website)",
     time: "Jul 2025 - Aug 2025",
     bullets: [
-      "Trained and deployed a custom CV classifier using OpenVINO Model Server, achieving real-time inference in a full-stack React/Node.js application.",
+      "Trained and deployed a custom CV classifier reaching 98.4% accuracy, served " +
+      "through OpenVINO Model Server in a full-stack React/Node.js application.",
       "Demonstrated end-to-end ML deployment from Jupyter to production.",
     ],
     skills: [
@@ -224,6 +235,7 @@ const Projects = [
       "Deep Learning",
       "Jupyter Notebook",
       "Data Processing (Pandas, Polars)",
+      "CI/CD",
     ],
     codeUrl: "https://github.com/hnthap/cat-or-dog",
     imageUrl: "./images/cat-or-dog.png",
@@ -231,11 +243,15 @@ const Projects = [
   },
   {
     title: "Lunar Calendar API",
-    time: "Jun 2025 - Aug 2025",
+    time: "Jul 2024 - Mar 2026",
     bullets: [
-      "Developed a robust API for converting between Gregorian and Lunar calendars, utilizing advanced astronomical algorithms to ensure high accuracy.",
-      "Implemented the API using Node.js and Express, with TypeScript for type safety and maintainability.",
-      "Deployed the API on Netlify, ensuring scalability and reliability for global users.",
+      "Built a Gregorian–Lunar calendar conversion API in TypeScript, implementing " +
+      "the astronomical equations from Meeus's Astronomical Algorithms " +
+      "to replace licensed third-party code.",
+      "Served over 6,000 requests daily during peak times on the public endpoint before shifting to a " +
+      "self-hostable model when free hosting became unsustainable.",
+      "Packaged the service with multi-stage Docker builds and a one-click deploy " +
+      "pipeline, so users can run their own instance in minutes.",
     ],
     skills: [
       "Express",
@@ -244,24 +260,25 @@ const Projects = [
       "Docker",
       "Node.js",
       "HTML/CSS",
+      "CI/CD",
     ],
     codeUrl: "https://github.com/hnthap/lunar-calendar-api",
     demoUrl: "https://hnthap.github.io/lunar-calendar-converter-interface",
     imageUrl: "./images/lunar-calendar.png",
     demoTitle: "Live Demo",
-    rating: "good",
+    rating: "featured",
   },
   {
     title: "Vietnamese Invoice Information Extraction",
     time: "Sep 2024 - Dec 2024",
     bullets: [
       "Developed a Machine Learning pipeline integrating Text Detection and " +
-        "Optical Character Recognition with Deep Learning techniques, " +
-        "implementing core data processing and model integration " +
-        "architecture.",
+      "Optical Character Recognition with Deep Learning techniques, " +
+      "implementing core data processing and model integration " +
+      "architecture.",
       "Built ReactJS frontend interface connected to PyTorch model via " +
-        "FastAPI backend, designing a scalable system architecture for " +
-        "automated invoice processing for the Vietnamese language.",
+      "FastAPI backend, designing a scalable system architecture for " +
+      "automated invoice processing for the Vietnamese language.",
     ],
     skills: [
       "Machine Learning",
@@ -299,11 +316,11 @@ const Projects = [
     time: "Mar 2025",
     bullets: [
       "Developed a full-stack web application using Django, MySQL, and " +
-        "Docker to facilitate the lookup of high school graduation exam scores.",
+      "Docker to facilitate the lookup of high school graduation exam scores.",
       "Designed a user-friendly frontend with HTML, CSS, and JavaScript, " +
-        "integrating JQuery for enhanced interactivity.",
+      "integrating JQuery for enhanced interactivity.",
       "Containerized the application components using Docker Compose for " +
-        "easy deployment and scalability.",
+      "easy deployment and scalability.",
     ],
     skills: [
       "Docker",
@@ -314,6 +331,7 @@ const Projects = [
       "SQL (MySQL, PostgreSQL, SQLite)",
       "HTML/CSS",
       "Data Processing (Pandas, Polars)",
+      "CI/CD",
     ],
     codeUrl: "https://github.com/hnthap/g-scores",
     demoTitle: "Demo Video",
@@ -322,48 +340,16 @@ const Projects = [
     rating: "good",
   },
   {
-    title: "Sign Language Video-to-Text Translation Research",
-    time: "Sep 2024 - Dec 2024",
-    bullets: [
-      "Implemented and trained an AI model that translates word-level sign " +
-        "language video to text.",
-      "Proposed a method to testify the Attention mechanism in " +
-        "Sign Language Recognition.",
-    ],
-    skills: [
-      "Machine Learning",
-      "PyTorch",
-      "Image Processing (OpenCV, Sharp)",
-      "Python",
-      "Computer Vision",
-      "Deep Learning",
-      "Jupyter Notebook",
-      "Natural Language Processing",
-    ],
-    slidesUrl:
-      "https://docs.google.com/presentation/d/1P3X8SyoZfiytYj8HwVwnjtI3T-AKdH95",
-    reportUrl:
-      "https://drive.google.com/file/d/1JCNF6CMXpz3MmppEYjouoJGU-GOk3EWh/" +
-      "view?usp=drive_link",
-    codeUrl:
-      "https://drive.google.com/drive/folders/" +
-      "1k9TDxe0B1_S9GE9-no3fibkioHcFdwk_?usp=drive_link",
-    imageUrl: "./images/sign-language.jpg",
-    rating: "normal",
-  },
-  {
     title: "Vietnamese News Summarization",
     time: "Sep 2024 - Dec 2024",
     bullets: [
-      "Created a Vietnamese news summarization dataset from 100,000+ " +
-        "unfiltered news articles using rigorous automated quality " +
-        "checks that resulted in 1,800 high-quality article-summary " +
-        "pairs, which were evaluated by fine-tuning Deep Learning " +
-        "models. Researched existing automated summarization methods " +
-        "for Vietnamese.",
-      "Achieved a 25% improvement in ROUGE-L scores and 23% increase in " +
-        "BERTScore Recall on fine-tuned T5 models. " +
-        "Deployed a complete chatbot with the trained model.",
+      "Built an automated filtering pipeline that reduced 390,000 raw " +
+      "Vietnamese news articles to 1,819 high-quality article-summary pairs, " +
+      "tuning the filter thresholds by Bayesian optimization against " +
+      "human-annotated samples.",
+      "Fine-tuned ViT5 and FLAN-T5 on the resulting dataset, more than " +
+      "doubling summary quality over the untrained baseline, and deployed a " +
+      "demo on Hugging Face Spaces."
     ],
     skills: [
       "Data Science",
@@ -392,19 +378,19 @@ const Projects = [
       "https://huggingface.co/spaces/hnthap/vietnamese-news-summary-ds310",
     demoTitle: "Live Demo",
     imageUrl: "./images/newspaper.jpg",
-    rating: "featured",
+    rating: "good",
   },
   {
     title: "Automated Vietnamese Cake Recognition",
     time: "Feb 2024 - Jun 2024",
     bullets: [
       "Engineered and optimized image crawling and annotation workflows, " +
-        "resulting in a significant 80% reduction in manual data " +
-        "preparation through automation.",
+      "resulting in a significant 80% reduction in manual data " +
+      "preparation through automation.",
       "Fine-tuned and deployed a Deep Learning Computer Vision system " +
-        "using YOLO architecture, achieving 85% precision in " +
-        "classifying Vietnamese traditional cakes from diverse image " +
-        "inputs.",
+      "using YOLO architecture, achieving 85% precision in " +
+      "classifying Vietnamese traditional cakes from diverse image " +
+      "inputs.",
     ],
     skills: [
       "Data Science",
@@ -428,18 +414,18 @@ const Projects = [
     demoUrl: "https://huggingface.co/spaces/hnthap/banh-detector",
     demoTitle: "Live Demo",
     imageUrl: "./images/banh-chung.jpg",
-    rating: "featured",
+    rating: "good",
   },
   {
     title: "Car Simulator",
     time: "Feb 2024 - Jun 2024",
     bullets: [
       "Collaborated on developing server-side logic and data management " +
-        "for a web-based application, optimizing performance through " +
-        "efficient architecture and collaborative debugging processes.",
+      "for a web-based application, optimizing performance through " +
+      "efficient architecture and collaborative debugging processes.",
       "Designed and deployed a browser-based 3D car simulator with HTML, " +
-        "CSS and JavaScript (Three.js and React) via Vite, enabling user " +
-        "controls and interactive features.",
+      "CSS and JavaScript (Three.js and React) via Vite, enabling user " +
+      "controls and interactive features.",
     ],
     skills: [
       "Vite",
@@ -456,18 +442,18 @@ const Projects = [
     demoUrl: "https://pariscar.netlify.app/",
     demoTitle: "Live Demo",
     imageUrl: "./images/car-ride.png",
-    rating: "good",
+    rating: "normal",
   },
   {
     title: "Restaurant Review Aspect-Based Sentiment Analysis",
     time: "Sep 2023 - Dec 2023",
     bullets: [
       "Engineered multiple sentiment analysis models, leveraging " +
-        "fine-tuned PhoBERT and XLM-R weights within customized " +
-        "architectures, to categorize over 1,000 Vietnamese restaurant " +
-        "reviews by different aspects such as food and service quality.",
+      "fine-tuned PhoBERT and XLM-R weights within customized " +
+      "architectures, to categorize over 1,000 Vietnamese restaurant " +
+      "reviews by different aspects such as food and service quality.",
       "Improved classification accuracy by 20% over existing techniques " +
-        "through the strategic integration of enhanced input features.",
+      "through the strategic integration of enhanced input features.",
     ],
     skills: [
       "Data Science",
@@ -491,17 +477,35 @@ const Projects = [
     rating: "normal",
   },
   {
+    title: "ChipPiano: Cross-Platform Piano Synthesizer",
+    time: "Sep 2025",
+    bullets: [
+      "Wrote a polyphonic synthesizer in C99, mixing up to 10 simultaneous " +
+      "oscillators through SDL3's real-time audio API at a 512-sample buffer.",
+      "Mapped a 46-key visual keyboard onto QWERTY input, with sustain pedal " +
+      "simulation and automatic note cleanup when the window loses focus.",
+      "Built with CMake and Conan for reproducible cross-platform compilation.",
+    ],
+    skills: ["C/C++", "Desktop Development"],
+    codeUrl: "https://github.com/hnthap/chip-piano",
+    imageUrl: "./images/chip-piano.png",
+    rating: "good",
+  },
+  {
     title: "Barebonesim: Educational Barebone Compiler",
     time: "Feb 2023 - Jun 2023",
     bullets: [
-      "Designed a cross-platform desktop code editor using Java and " +
-        "JavaFX to support the BareBone programming language for " +
-        "educational purposes; utilizing various types of controls " +
-        "and components for a fully functional, easy-to-use UI.",
-      "Directed the project timeline and resources, identifying and " +
-        "implementing key enhancements.",
+      "Built a parser and interpreter for the Barebone teaching language, " +
+      "compiling source into an abstract syntax tree and executing it against " +
+      "an isolated variable state.",
+      "Wrapped it in a Java Swing desktop IDE with file management, syntax " +
+      "beautification, and a snippets library, so students could run code and " +
+      "watch variable values change instead of tracing it on paper.",
+      "Ran execution on a separate thread with a configurable timeout, since " +
+      "the language's only control flow is a while loop and infinite loops " +
+      "are easy to write by accident.",
     ],
-    skills: ["Gradle", "Java", "JavaFX"],
+    skills: ["Java", "Gradle", "Desktop Development"],
     slidesUrl:
       "https://docs.google.com/presentation/d/" +
       "1-YqRb4C5tWUJo3MegXoxBurtoQWV5AC3/edit?usp=drive_link",
