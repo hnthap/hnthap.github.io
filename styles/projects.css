@@ -2,17 +2,32 @@ html {
     --border-radius: 10px;
 }
 
+/*
+ * Fluid card grid. auto-fill + minmax lets the track count follow the available
+ * width on its own, so there is no breakpoint where the layout switches to a
+ * single column -- a 600px viewport still fits two cards. This replaces a
+ * flex-wrap row whose `space-around` left the final row's items misaligned
+ * against the rows above, and whose fixed 200px cards needed a pile of
+ * `!important` width overrides below 700px.
+ *
+ * --card-min is the only knob: it is the narrowest a card may get before the
+ * grid drops a column.
+ */
 .project-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    --card-min: 200px;
+    --card-gap: 1rem;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--card-min), 1fr));
+    gap: var(--card-gap);
     margin-top: 20px;
+    /* #root sets no horizontal padding, so without this the cards butt against
+       the viewport edge once the page is narrower than --root-max-width. */
+    padding-left: var(--card-gap);
+    padding-right: var(--card-gap);
 
     & .project-small {
-        --local-width: 200px;
         --padding-horizontal: 5px;
-        --margin-vertical: 5px;
 
         display: flex;
         flex-direction: column;
@@ -20,21 +35,27 @@ html {
         padding-top: calc(var(--padding-horizontal) * 1.2);
         padding-left: var(--padding-horizontal);
         padding-right: var(--padding-horizontal);
-        width: var(--local-width);
-        margin-top: var(--margin-vertical);
-        margin-bottom: var(--margin-vertical);
-        transition: 0.3s;
+        padding-bottom: calc(var(--padding-horizontal) * 1.2);
+        transition: background-color 0.3s;
+        cursor: pointer;
 
-        & img {
-            width: var(--local-width);
-            height: var(--local-width);
+        /*
+         * Square thumbnails keep the grid rows even regardless of the source
+         * image's aspect ratio; the card itself is free to be any width.
+         *
+         * `:not(.small-star)` matters: the featured/good star is also an <img>
+         * inside this card, and it must keep its own size and square edges.
+         */
+        & img:not(.small-star) {
+            width: 100%;
+            aspect-ratio: 1;
             object-fit: cover;
             border-radius: var(--border-radius);
         }
 
         & .project-title {
             font-size: calc(var(--medium-font) * 0.75);
-            width: var(--local-width);
+            width: 100%;
             text-align: center;
         }
     }
@@ -50,26 +71,34 @@ html {
     & .project-small-good:hover {
         background-color: var(--secondary);
     }
+
+    /*
+     * Touch devices never fire :hover, so the press itself has to give feedback.
+     */
+    & .project-small:active {
+        background-color: var(--bg-important);
+    }
+
+    & .project-small:focus-visible {
+        outline: 2px solid var(--link);
+        outline-offset: 2px;
+    }
 }
 
-@media (width <= 700px) {
+/*
+ * Very narrow viewports: one column, but let the card fill it rather than
+ * holding the 200px minimum and overflowing.
+ */
+@media (width <= 400px) {
     .project-container {
-        flex-direction: column;
+        --card-min: 100%;
+        --card-gap: 0.75rem;
     }
+}
 
-    .project-small {
-        margin: auto;
-        width: 90% !important;
-
-        & img {
-            margin: auto;
-            width: 90% !important;
-            height: calc(2 * var(--local-width)) !important;
-        }
-    }
-
-    .project-title {
-        width: 100% !important;
+@media (prefers-reduced-motion: reduce) {
+    .project-container .project-small {
+        transition: none;
     }
 }
 
@@ -93,13 +122,22 @@ html {
         position: fixed;
         opacity: 1;
         overflow-y: auto;
-        scrollbar-width: none;
+        /*
+         * The panel scrolls whenever a project has enough tags, and the tags
+         * are navigation -- hiding the scrollbar left that content silently
+         * clipped, reading as a layout error rather than as "there is more".
+         * "thin" keeps the edge quiet while still signalling it, and only
+         * appears when the content actually overflows.
+         */
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb) transparent;
         border: var(--border);
         border-radius: var(--border-radius);
         top: var(--position-vertical);
         bottom: var(--position-vertical);
         right: min(20%, var(--good-small-height));
-        width: 320px;
+        width: 360px;
+        max-width: calc(100vw - 2 * var(--good-small-height));
         background-color: var(--bg);
         font-size: var(--small-font);
 
@@ -189,5 +227,27 @@ html {
             padding-top: calc(0.1 * var(--small-font));
             padding-bottom: calc(0.1 * var(--small-font));
         }
+    }
+}
+
+/*
+ * Below 700px the panel is pinned 25px from the right at a fixed 320px, which
+ * clips it off-screen at 320px viewports and leaves only a ~15px strip of
+ * backdrop at 360px. The backdrop is the only way to dismiss the modal -- there
+ * is no close button -- so that strip has to stay comfortably tappable. Centre
+ * the panel and cap its width instead.
+ *
+ * Must come after the #modal block above: both selectors are 1-1-0, a media
+ * query adds no specificity, so source order alone decides this.
+ */
+@media (width <= 700px) {
+    #modal .modal-content {
+        --side-gap: max(2rem, 12vw);
+
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100vw - 2 * var(--side-gap));
+        max-width: 320px;
     }
 }

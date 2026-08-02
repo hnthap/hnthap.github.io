@@ -132,7 +132,13 @@ function ProjectSmallView(project) {
   const imagePath = project.imageUrl ?? "./images/golden-cube.png";
   const image = $("<img>").attr("src", imagePath).attr("alt", "Project Image");
   const text = $("<p>").addClass("project-title").text(project.title);
-  const div = $("<div>").addClass("project-small");
+  // The card opens a dialog, so it has to be reachable and operable from the
+  // keyboard, not just clickable.
+  const div = $("<div>")
+    .addClass("project-small")
+    .attr("role", "button")
+    .attr("tabindex", "0")
+    .attr("aria-label", project.title);
   if (project.rating === "featured") {
     div
       .addClass("project-small-starred")
@@ -155,6 +161,14 @@ function ProjectSmallView(project) {
     div.append(image, text);
   }
   div.on("click", () => showModal(project));
+  div.on("keydown", (event) => {
+    // Enter and Space are what a real <button> responds to; Space also scrolls
+    // the page by default, so it needs suppressing.
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      showModal(project);
+    }
+  });
   return div;
 }
 
