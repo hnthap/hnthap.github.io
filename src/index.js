@@ -22,22 +22,47 @@
  *  graduationDate: string;
  *  graduated: boolean;
  * }} EducationItem
+ *
+ * @typedef {{
+ *  role: string;
+ *  organization: string;
+ *  location: string;
+ *  time: string;
+ *  bullets: string[];
+ * }} ExperienceItem
  */
 
 (function () {
   /** @type {SummaryItem[]} */
   const summaryItems = [
     {
-      title: "Full-Stack / AI Developer",
-      organization: null,
+      title: "DevOps / Site Reliability Engineer",
+      organization: "FPT Software",
       organizationUrl: null,
     },
   ];
   const emails = ["huynhnhanthap[at]gmail.com"];
   const interests = [
-    "AI-powered products",
-    "LLM application",
     "Vietnamese NLP",
+    "Astronomical algorithms",
+    "Language learning",
+  ];
+  /** @type {ExperienceItem[]} */
+  const experienceItems = [
+    {
+      role: "AI Engineer Intern",
+      organization: "DFM-Engineering",
+      location: "HCMC, Vietnam",
+      time: "Sep 2025 - Dec 2025",
+      bullets: [
+        "Rebuilt the core logic of an inherited computer vision pipeline, cutting " +
+          "coordinate error from around 30cm to under 2cm and removing an unused " +
+          "model that had been slowing every run.",
+        "Improved an object detection model for engineering drawings, roughly " +
+          "halving the error rate on its weakest class through annotation " +
+          "correction and a custom augmentation pipeline.",
+      ],
+    },
   ];
   /** @type {EducationItem[]} */
   const educationItems = [
@@ -75,12 +100,14 @@
       time: "2024",
     },
   ];
+  const pageTitle = `${FULL_NAME} — ${summaryItems[0].title}`;
 
-  document.title = FULL_NAME;
+  document.title = pageTitle;
 
   $("#root").append(
     PageTop(),
     Summary(summaryItems, emails, interests),
+    ExperienceList(experienceItems),
     ProjectList(),
     EducationList(educationItems),
     CertificateList(certificates)
@@ -112,9 +139,9 @@ function Summary(itemList, emails, interests) {
         $("<strong>").text(item.title),
         $("<br>"),
         item.organization
-          ? $("<a>").text(item.organization).attr(
-            "href", item.organizationUrl ?? "/"
-          )
+          ? (item.organizationUrl
+            ? $("<a>").text(item.organization).attr("href", item.organizationUrl)
+            : $("<span>").text(item.organization))
           : ""
       )
     ),
@@ -159,6 +186,17 @@ function ProjectList() {
 
 /**
  *
+ * @param {ExperienceItem[]} experienceItems
+ * @returns {JQuery<HTMLElement>}
+ */
+function ExperienceList(experienceItems) {
+  const span = $("<span>");
+  span.append(Section("Experience"), ...experienceItems.map(Experience));
+  return span;
+}
+
+/**
+ *
  * @param {EducationItem[]} educationItems
  * @returns {JQuery<HTMLElement>}
  */
@@ -177,6 +215,37 @@ function CertificateList(certificates) {
   const span = $("<span>");
   span.append(Section("Certificates"), ...certificates.map(Certificate));
   return span;
+}
+
+/**
+ *
+ * @param {ExperienceItem} item
+ * @returns {JQuery<HTMLElement>}
+ */
+function Experience(item) {
+  const table = $("<table>");
+  table.addClass("experience");
+  table.append(
+    $("<tr>").append(
+      $("<td>").addClass("left").text(item.role),
+      $("<td>").addClass("right").text(item.location)
+    ),
+    $("<tr>").append(
+      $("<td>")
+        .addClass("left it")
+        .append("&nbsp;&nbsp; " + item.organization),
+      $("<td>").addClass("right it").append(item.time)
+    ),
+    ...item.bullets.map((bullet) =>
+      $("<tr>").append(
+        $("<td>")
+          .addClass("just")
+          .attr("colspan", "2")
+          .append("&nbsp;&nbsp; " + bullet)
+      )
+    )
+  );
+  return table;
 }
 
 /**
