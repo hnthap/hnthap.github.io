@@ -168,24 +168,65 @@ p {
     }
 }
 
+/* Indented block, used for the "See more" line under Projects. */
 .experience {
     width: 94%;
     margin-left: 3%;
     margin-right: 3%;
     padding-top: 5px;
+}
 
-    & td {
+/*
+ * A resume entry: experience, education or certificate. Each is a labelled
+ * record, not a grid -- the meta column (dates, location) shrink-wraps to its
+ * content instead of taking a fixed share of the width, so ranges like
+ * "Sep 2025 - Dec 2025" cannot be broken across lines.
+ */
+.entry {
+    width: 94%;
+    margin-left: 3%;
+    margin-right: 3%;
+    padding-top: 5px;
+    margin-bottom: 1.2rem;
         font-size: var(--small-font);
     }
 
-    & td.left {
-        width: 80%;
+.entry-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.entry-primary {
+    flex: 1;
         text-align: left;
     }
 
-    & td.right {
-        width: 20%;
+.entry-primary-strong {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.entry-meta {
+    flex: 0 0 auto;
+    white-space: nowrap;
         text-align: right;
+}
+
+.entry-sub {
+    padding-left: 1.2rem;
+}
+
+@media (width <= 700px) {
+    .entry-line {
+        flex-direction: column;
+        gap: 0;
+    }
+    .entry-meta {
+        text-align: left;
+        white-space: normal;
     }
 }
 

@@ -30,6 +30,11 @@
  *  time: string;
  *  bullets: string[];
  * }} ExperienceItem
+ *
+ * `bullets` is deliberately not rendered. This is a portfolio, not a resume:
+ * the Experience section states where the time went and leaves the evidence to
+ * the projects page, matching how Projects and Education are handled. The text
+ * is kept here because it is the CV's wording and the two should not drift.
  */
 
 (function () {
@@ -223,29 +228,34 @@ function CertificateList(certificates) {
  * @returns {JQuery<HTMLElement>}
  */
 function Experience(item) {
-  const table = $("<table>");
-  table.addClass("experience");
-  table.append(
-    $("<tr>").append(
-      $("<td>").addClass("left").text(item.role),
-      $("<td>").addClass("right").text(item.location)
-    ),
-    $("<tr>").append(
-      $("<td>")
-        .addClass("left it")
-        .append("&nbsp;&nbsp; " + item.organization),
-      $("<td>").addClass("right it").append(item.time)
-    ),
-    ...item.bullets.map((bullet) =>
-      $("<tr>").append(
-        $("<td>")
-          .addClass("just")
-          .attr("colspan", "2")
-          .append("&nbsp;&nbsp; " + bullet)
+  return $("<div>")
+    .addClass("entry")
+    .append(
+      EntryLine(
+        $("<span>").addClass("entry-primary-strong").text(item.role),
+        $("<span>").text(item.location)
+      ),
+      EntryLine(
+        $("<span>").addClass("it entry-sub").text(item.organization),
+        $("<span>").addClass("it").text(item.time)
       )
-    )
-  );
-  return table;
+    );
+}
+
+/**
+ * A single row of an entry: primary text on the left, meta text on the right.
+ *
+ * @param {JQuery<HTMLElement>} primary
+ * @param {JQuery<HTMLElement>} meta
+ * @returns {JQuery<HTMLElement>}
+ */
+function EntryLine(primary, meta) {
+  return $("<div>")
+    .addClass("entry-line")
+    .append(
+      $("<span>").addClass("entry-primary").append(primary),
+      $("<span>").addClass("entry-meta").append(meta)
+    );
 }
 
 /**
@@ -254,25 +264,22 @@ function Experience(item) {
  * @returns {JQuery<HTMLElement>}
  */
 function Education(item) {
-  const table = $("<table>");
-  table.addClass("experience");
-  table.append(
-    $("<tr>").append(
-      $("<td>").addClass("left").text(item.school),
-      $("<td>").addClass("right").text(item.location)
-    ),
-    $("<tr>").append(
-      $("<td>")
-        .addClass("left it")
-        .append("&nbsp;&nbsp; " + item.degree),
-      $("<td>").addClass("right it").append(
-        // (item.graduated ? "Graduated" : "Expected Graduation Date") +
-        //   ": " +
-        item.graduationDate
+  return $("<div>")
+    .addClass("entry")
+    .append(
+      EntryLine(
+        $("<span>").addClass("entry-primary-strong").text(item.school),
+        $("<span>").text(item.location)
+      ),
+      EntryLine(
+        $("<span>").addClass("it entry-sub").text(item.degree),
+        $("<span>").addClass("it").text(
+          // (item.graduated ? "Graduated" : "Expected Graduation Date") +
+          //   ": " +
+          item.graduationDate
+        )
       )
-    )
-  );
-  return table;
+    );
 }
 
 /**
@@ -281,30 +288,25 @@ function Education(item) {
  * @returns {JQuery<HTMLElement>}
  */
 function Certificate(certificate) {
-  const table = $("<table>");
-  table.addClass("experience");
-  table.append(
-    $("<tr>").append(
-      $("<td>").addClass("left").text(certificate.title),
-      $("<td>").addClass("right").text(certificate.organization)
-    ),
-    $("<tr>").append(
-      $("<td>")
-        .addClass("left")
-        .append(
-          $("<span>")
-            .addClass("it")
-            .append(
-              certificate.subtitles.map((s) => "&nbsp;&nbsp; " + s).join("<br>")
-            ),
-          certificate.urls.length !== 0
-            ? CertificateVerify(certificate.urls)
-            : ""
-        ),
-      $("<td>").addClass("right it").text(certificate.time)
-    )
-  );
-  return table;
+  return $("<div>")
+    .addClass("entry")
+    .append(
+      EntryLine(
+        $("<span>").addClass("entry-primary-strong").text(certificate.title),
+        $("<span>").text(certificate.organization)
+      ),
+      EntryLine(
+        $("<span>")
+          .addClass("entry-sub")
+          .append(
+            $("<span>").addClass("it").html(certificate.subtitles.join("<br>")),
+            certificate.urls.length !== 0
+              ? CertificateVerify(certificate.urls)
+              : ""
+          ),
+        $("<span>").addClass("it").text(certificate.time)
+      )
+    );
 }
 
 /**
