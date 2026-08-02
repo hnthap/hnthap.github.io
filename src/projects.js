@@ -74,8 +74,7 @@ const skillMask = Projects.map(() => true);
             .addClass("modal-skills-container")
             .append(
               $("<span>").addClass("it").append("Skills:&nbsp;"),
-              $("<span>").attr("id", "modal-skills"),
-              "."
+              $("<span>").attr("id", "modal-skills")
             )
         )
     );

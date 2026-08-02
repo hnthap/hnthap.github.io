@@ -86,7 +86,7 @@ function Banner(bannerText) {
 function Menu() {
   return $("<div>").addClass("menu").append(
     // $("<a>").attr("href", Accounts.GITHUB).append(Avatar()),
-    MenuItem("home", "./"),
+    MenuItem("home", "./index.html"),
     MenuItem("projects", "./projects.html"),
     MenuItem("github", Accounts.GITHUB, "_blank"),
     MenuItem("linkedin", Accounts.LINKED_IN, "_blank"),
